@@ -21,8 +21,12 @@
                 Taxi dispatch &amp; management
             </a>
             <div class="header_userinfo fl-r">
-                <div>Welcome User123<a href="index.html">Logout</a></div>
+              <% if user_signed_in? %>
+                <div>Welcome <%= current_user.email %> <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>Logout</a></div> 
                 <div>Canada<a href="modal/edit_personal_info.html" class="modal_ajax" title="Edit Personal Information">Change</a></div>
+              <% else %>
+                <%= link_to "Login", new_user_session_path, :class => "modal_ajax" %> <%= link_to "Create Account", new_user_registration_path, :class => "modal_ajax" %> 
+              <% end %>                
             </div>
         </div>
     </div>
@@ -65,5 +69,6 @@
     </div>
 
 </div>
+<%= javascript_include_tag "bottum_application", "data-turbolinks-track" => true %>
 </body>
 </html>

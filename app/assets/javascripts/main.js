@@ -242,7 +242,7 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions1);
 
-  var image = 'img/ico/map/ico_location_mark.png';
+  var image = 'assets/img/ico/map/ico_location_mark.png';
   
   var marker = new google.maps.Marker({
       position: locationTest,
@@ -272,14 +272,14 @@ function initializeTwoPoint() {
       position: locationStart,
       map:  mapTwoPoint,
       title:"Location Start",
-      icon: 'img/ico/map/ico_location_mark_a.png'
+      icon: 'assets/img/ico/map/ico_location_mark_a.png'
    	});
 
    var marker = new google.maps.Marker({
       position: locationFinish,
       map:  mapTwoPoint,
       title:"Location Finish",
-      icon: 'img/ico/map/ico_location_mark_b.png'
+      icon: 'assets/img/ico/map/ico_location_mark_b.png'
    	});
 
 }

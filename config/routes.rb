@@ -1,4 +1,10 @@
 Taxidispatch::Application.routes.draw do
+  devise_for :users, :controllers => { :registrations => "registrations",
+                                       :sessions => "sessions",
+                                       :passwords => "passwords"} do
+
+  end
+
   get "home/index"
   get "home/help"
   

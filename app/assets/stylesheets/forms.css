@@ -101,7 +101,7 @@ textarea:focus,
 
 input.input_ico {
     padding-left: 35px;
-    background: #fff url(../img/ico/ico_input.png) 0 0 no-repeat;
+    background: #fff url(../assets/img/ico/ico_input.png) 0 0 no-repeat;
 }
 
 input.input_ico_date     { background-position: 0 0; }
@@ -112,7 +112,7 @@ input.input_ico_password { background-position: 100% -136px; }
 
 input.input_ico_right  {
     padding-right: 35px;
-    background: #fff url(../img/ico/ico_input.png) 0 0 no-repeat;
+    background: #fff url(../assets/img/ico/ico_input.png) 0 0 no-repeat;
 }
 
 input.input_ico_right.input_ico_search  { background-position: 100% -68px; }
@@ -172,7 +172,7 @@ input[type="radio"] {
 .ui-state-default .ui-icon-triangle-1-s,
 .checkbox .ui-icon,
 .radiobutton .ui-icon  {
-    background-image: url(../img/ico/ico_ui.png); 
+    background-image: url(../assets/img/ico/ico_ui.png); 
 }
 
 .ui-icon-triangle-1-n                   { background-position: 0 0px;  }
@@ -361,7 +361,7 @@ ul.ui-selectmenu-menu-popup {
     /* Date Picker Calendar */
 
 .ui-datepicker .ui-datepicker-header {
-    background: url(../img/btn/btn.png) 0 0 repeat-x;
+    background: url(../assets/img/btn/btn.png) 0 0 repeat-x;
     color: #000;
 }
 

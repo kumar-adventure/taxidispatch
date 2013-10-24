@@ -432,7 +432,7 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-widget-content {
 	border: 1px solid #c7ced1;
-	background: #fff url(images/ui-bg_flat_0_fff_40x100.png) 50% 50% repeat-x;
+	background: #fff url(/assets/ui-bg_flat_0_fff_40x100.png) 50% 50% repeat-x;
 	color: #464646;
 }
 .ui-widget-content a {
@@ -440,7 +440,7 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-widget-header {
 	border: 1px solid #c7ced1;
-	background: #fff url(images/ui-bg_flat_0_fff_40x100.png) 50% 50% repeat-x;
+	background: #fff url(/assets/ui-bg_flat_0_fff_40x100.png) 50% 50% repeat-x;
 	color: #464646;
 	font-weight: bold;
 }
@@ -454,7 +454,7 @@ button.ui-button::-moz-focus-inner {
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
 	border: 1px solid #fff;
-	background: #fff url(images/ui-bg_flat_0_fff_40x100.png) 50% 50% repeat-x;
+	background: #fff url(/assets/ui-bg_flat_0_fff_40x100.png) 50% 50% repeat-x;
 	font-weight: normal;
 	color: #000;
 }
@@ -471,7 +471,7 @@ button.ui-button::-moz-focus-inner {
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
 	border: 1px solid #fff;
-	background: #fff url(images/ui-bg_flat_0_fff_40x100.png) 50% 50% repeat-x;
+	background: #fff url(/assets/ui-bg_flat_0_fff_40x100.png) 50% 50% repeat-x;
 	font-weight: normal;
 	color: #000;
 }
@@ -486,7 +486,7 @@ button.ui-button::-moz-focus-inner {
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
 	border: 1px solid #c7ced1;
-	background: #fff url(images/ui-bg_flat_0_fff_40x100.png) 50% 50% repeat-x;
+	background: #fff url(/assets/ui-bg_flat_0_fff_40x100.png) 50% 50% repeat-x;
 	font-weight: normal;
 	color: #464646;
 }
@@ -503,7 +503,7 @@ button.ui-button::-moz-focus-inner {
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
 	border: 1px solid #ffffff;
-	background: #eeeeee url(images/ui-bg_flat_55_eeeeee_40x100.png) 50% 50% repeat-x;
+	background: #eeeeee url(/assets/ui-bg_flat_55_eeeeee_40x100.png) 50% 50% repeat-x;
 	color: #444444;
 }
 .ui-state-highlight a,
@@ -515,7 +515,7 @@ button.ui-button::-moz-focus-inner {
 .ui-widget-content .ui-state-error,
 .ui-widget-header .ui-state-error {
 	border: 1px solid #c0402a;
-	background: #c0402a url(images/ui-bg_flat_55_c0402a_40x100.png) 50% 50% repeat-x;
+	background: #c0402a url(/assets/ui-bg_flat_55_c0402a_40x100.png) 50% 50% repeat-x;
 	color: #ffffff;
 }
 .ui-state-error a,
@@ -561,27 +561,27 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-icon,
 .ui-widget-content .ui-icon {
-	background-image: url(images/ui-icons_000_256x240.png);
+	background-image: url(/assets/ui-icons_000_256x240.png);
 }
 .ui-widget-header .ui-icon {
-	background-image: url(images/ui-icons_000_256x240.png);
+	background-image: url(/assets/ui-icons_000_256x240.png);
 }
 .ui-state-default .ui-icon {
-	background-image: url(images/ui-icons_000_256x240.png);
+	background-image: url(/assets/ui-icons_000_256x240.png);
 }
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon {
-	background-image: url(images/ui-icons_777_256x240.png);
+	background-image: url(/assets/ui-icons_777_256x240.png);
 }
 .ui-state-active .ui-icon {
-	background-image: url(images/ui-icons_000_256x240.png);
+	background-image: url(/assets/ui-icons_000_256x240.png);
 }
 .ui-state-highlight .ui-icon {
-	background-image: url(images/ui-icons_3383bb_256x240.png);
+	background-image: url(/assets/ui-icons_3383bb_256x240.png);
 }
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {
-	background-image: url(images/ui-icons_fbc856_256x240.png);
+	background-image: url(/assetsui-icons_fbc856_256x240.png);
 }
 
 /* positioning */
@@ -794,14 +794,14 @@ button.ui-button::-moz-focus-inner {
 
 /* Overlays */
 .ui-widget-overlay {
-	background: #eeeeee url(images/ui-bg_flat_0_eeeeee_40x100.png) 50% 50% repeat-x;
+	background: #eeeeee url(/assets/ui-bg_flat_0_eeeeee_40x100.png) 50% 50% repeat-x;
 	opacity: .8;
 	filter: Alpha(Opacity=80);
 }
 .ui-widget-shadow {
 	margin: -4px 0 0 -4px;
 	padding: 4px;
-	background: #aaaaaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
+	background: #aaaaaa url(/assets/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
 	opacity: .6;
 	filter: Alpha(Opacity=60);
 	border-radius: 0px;

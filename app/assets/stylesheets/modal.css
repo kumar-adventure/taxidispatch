@@ -32,7 +32,7 @@
 
 #cboxContent{
     padding-top: 41px;
-    background: #1c1c1c url(../img/modal/bg_header.png) 0 0 repeat-x;
+    background: #1c1c1c url(../assets/img/modal/bg_header.png) 0 0 repeat-x;
     background-color: rgba(0,0,0,.8);  
 }
 
@@ -60,7 +60,7 @@
     font-size: 16px;
     float: none !important;
     text-align: center;
-    background:url(../img/modal/bg_header.png) 0 0 repeat-x;
+    background:url(../assets/img/modal/bg_header.png) 0 0 repeat-x;
     border-left:2px solid #1c1c1c; 
     border-right:2px solid #1c1c1c; 
     z-index: 1;
@@ -74,7 +74,7 @@
 }
 
 #cboxLoadingGraphic {
-    background:url(../img/modal/loading.gif) no-repeat center 55%;
+    background:url(../assets/img/modal/loading.gif) no-repeat center 55%;
 }
 
 
@@ -87,7 +87,7 @@
     top:0px; 
     right:2px; 
     display:block; 
-    background:url(../img/modal/controls.png) no-repeat top center; 
+    background:url(../assets/img/modal/controls.png) no-repeat top center; 
     width:38px; 
     height:19px; 
     text-indent:-9999px;
