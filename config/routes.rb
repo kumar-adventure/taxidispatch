@@ -6,6 +6,7 @@ Taxidispatch::Application.routes.draw do
 
   end
 
+  resources :my_accounts
 
   get "home/index"
   get "home/help"
