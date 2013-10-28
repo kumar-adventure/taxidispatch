@@ -8,7 +8,7 @@
 		<li>
 			<span>Password:</span>
 			<%= f.password_field :password, :placeholder => "Password", :class => "input_ico_right input_ico_password" %>
-			<%= link_to 'Forgot your password?', new_user_password_path, :class => "forgot_password", :id => "forget-password", target:"blank" %>
+			<%= link_to 'Forgot your password?', new_user_password_path, :class => "modal_ajax cboxElement", :id => "forget-password", target:"blank", :title => "" %>
 		</li>
     </ul>
     <% if devise_mapping.rememberable? -%>
