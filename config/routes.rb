@@ -7,7 +7,8 @@ Taxidispatch::Application.routes.draw do
   end
 
   resources :my_accounts
-
+  resources :new_bookings
+  
   get "home/index"
   get "home/help"
   

@@ -1,40 +1,33 @@
-  <div class="content_wrap clearfix">
-
-        <div class="content_heading">
-            Web Booking Taxi Service
-        </div>  
-
-        <div class="content_nav dblshadow">
-            <ul>
-                <li class="first active"><a href="index.html">View Map<span class="content_nav_arrow"></span></a></li>
-                <li class="last "><a href="#">Pick Up &amp; Drop Off<span class="content_nav_arrow"></span></a></li>
-            </ul>
-        </div>
-
-        <div class="content home clearfix">
-
-            <div class="gray_box clearfix">
-                <div class="home_map fl-l">
-                    <div id="map-canvas" class="map_holder"></div>     
-                </div>
-                <div class="home_sidebar fl-r">
-                    <ul class="home_sidebar_menu">
-                        <li><a href="#">Booking Information<span class="ico ico_arrow"></span></a></li>
-                        <li><a href="#">Booked<span class="ico ico_arrow"></span></a></li>
-                        <li><a href="#">Dispathed<span class="ico ico_arrow"></span></a></li>
-                        <li><a href="#">E.T.A.<span class="ico ico_arrow"></span></a></li>
-                    <ul>
-                </div>
-            </div>
-
-            <div class="home_searchbar">
-                <ul class="form_wrap clearfix">
-                    <li class="fl-l"><input type="text" value="Pick Up" class="input_ico_right input_ico_search"></li>
-                    <li class="fl-l"><button class="btn btn_orange">Book the Nearest Taxi</button></li>
-                </ul>
-            </div>
-
-        </div>
-
+<div class="content_wrap clearfix">
+  <div class="content_heading">
+    Web Booking Taxi Service
+  </div>
+  <div class="content_nav dblshadow">
+    <ul>
+      <li class="first active"><%= link_to "View Map", root_path%><span class="content_nav_arrow"></span></li>
+      <li class="last "><a href="#">Pick Up &amp; Drop Off<span class="content_nav_arrow"></span></a></li>
+    </ul>
+  </div>
+  <div class="content home clearfix">
+    <div class="gray_box clearfix">
+      <div class="home_map fl-l">
+        <div id="map-canvas" class="map_holder"></div>     
+      </div>
+      <div class="home_sidebar fl-r">
+        <ul class="home_sidebar_menu">
+          <li><a href="#">Booking Information<span class="ico ico_arrow"></span></a></li>
+          <li><a href="#">Booked<span class="ico ico_arrow"></span></a></li>
+          <li><a href="#">Dispathed<span class="ico ico_arrow"></span></a></li>
+          <li><a href="#">E.T.A.<span class="ico ico_arrow"></span></a></li>
+        </ul>
+      </div>
     </div>
+    <div class="home_searchbar">
+      <ul class="form_wrap clearfix">
+        <li class="fl-l"><input type="text" value="Pick Up" class="input_ico_right input_ico_search"></li>
+        <li class="fl-l"><button class="btn btn_orange">Book the Nearest Taxi</button></li>
+      </ul>
+    </div>
+  </div>
+</div>
 <%= javascript_include_tag "map","main", "data-turbolinks-track" => true %>
