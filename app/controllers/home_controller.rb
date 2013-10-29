@@ -4,5 +4,9 @@ class HomeController < ApplicationController
 
   def help
   end
+
+  def email_us
+    render :layout => false
+  end
   
 end

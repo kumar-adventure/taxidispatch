@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'mysql2'
+gem 'pg'
 gem 'devise'
 
 
@@ -30,10 +30,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'protected_attributes'
-
-group :development do 
-  gem 'pg'
-end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
