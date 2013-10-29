@@ -8,9 +8,16 @@ Taxidispatch::Application.routes.draw do
 
   resources :my_accounts
   resources :new_bookings
+  resource :user, only: [:show] do
+  collection do
+    patch 'update_password'
+    get 'edit_password'
+  end
+end
   
   get "home/index"
   get "home/help"
+  get "home/email_us"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
