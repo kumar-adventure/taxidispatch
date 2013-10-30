@@ -3,15 +3,15 @@ class UsersController < ApplicationController
     @user = current_user
     render :layout => false
   end
-debugger
+
   def update_password
     @user = User.find(current_user.id)
     if @user.update_attributes(user_params)
       # Sign in the user by passing validation in case his password changed
       sign_in @user, :bypass => true
-      redirect_to root_path
+      redirect_to my_accounts_path, :notice => 'Password successfully updated.'
     else
-      render "edit_password"
+      render :action => "edit_password"
     end
   end
 

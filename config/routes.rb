@@ -6,6 +6,13 @@ Taxidispatch::Application.routes.draw do
 
   end
 
+  resource :user, only: [:show] do
+    collection do
+      get 'edit_password'
+      patch 'update_password'
+    end
+  end
+  
   resources :my_accounts
   resources :new_bookings do
 
