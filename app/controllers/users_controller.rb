@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @user = current_user
     render :layout => false
   end
-
+debugger
   def update_password
     @user = User.find(current_user.id)
     if @user.update_attributes(user_params)

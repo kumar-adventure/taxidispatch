@@ -3,4 +3,7 @@ class NewBookingsController < ApplicationController
 	
 	def index
 	end
+
+	def booking_history
+	end
 end
