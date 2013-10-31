@@ -6,6 +6,13 @@ Taxidispatch::Application.routes.draw do
 
   end
 
+  resource :user, only: [:show] do
+    collection do
+      get 'edit_password'
+      patch 'update_password'
+    end
+  end
+  
   resources :my_accounts
   resources :new_bookings
   resource :user, only: [:show] do
@@ -14,7 +21,9 @@ Taxidispatch::Application.routes.draw do
     get 'edit_password'
   end
 end
+
   
+  get "booking_history" => 'new_bookings#booking_history'
   get "home/index"
   get "home/help"
   get "home/email_us"
