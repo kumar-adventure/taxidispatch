@@ -14,6 +14,13 @@ Taxidispatch::Application.routes.draw do
   end
   
   resources :my_accounts
+  resources :my_rides do
+    collection do
+      get 'current_rides'
+      get 'past_rides'
+      get 'cancelled_rides'
+    end
+  end
   resources :new_bookings do
 
   end
