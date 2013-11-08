@@ -33,7 +33,7 @@ Taxidispatch::Application.routes.draw do
   end
 
   
-  get "booking_history" => 'new_bookings#booking_history'
+  get "booking_history" => 'bookings#booking_history'
   get "home/index"
   get "home/help"
   get "home/email_us"
