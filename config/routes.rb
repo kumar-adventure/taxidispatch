@@ -14,7 +14,7 @@ Taxidispatch::Application.routes.draw do
   end
   
   resources :my_accounts
-
+  resources :rides
   resources :bookings
   resource :user, only: [:show] do
   collection do
@@ -25,6 +25,9 @@ end
 
   
   get "booking_history" => 'bookings#booking_history'
+  get "past_rides" => 'rides#past_rides'
+  get "cancelled_rides" => 'rides#cancelled_rides'
+
   get "home/index"
   get "home/help"
   get "home/email_us"
