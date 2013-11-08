@@ -1,7 +1,7 @@
 <div class="content home clearfix">
   <div class="gray_box clearfix">
     <div class="home_map fl-l">
-      <div id="map-canvas" class="map_holder"></div>     
+      <div id="map" class="map_holder"></div>     
     </div>
     <div class="home_sidebar fl-r">
       <ul class="home_sidebar_menu">
@@ -19,3 +19,22 @@
     </ul>
   </div>
 </div>
+<script>
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers([
+    {
+      "lat": 0,
+      "lng": 0,
+      "picture": {
+        "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+        "width":  36,
+        "height": 36
+      },
+      "infowindow": "hello!"
+    }
+  ]);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+</script>
