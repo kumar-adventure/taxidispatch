@@ -14,9 +14,15 @@ Taxidispatch::Application.routes.draw do
   end
   
   resources :my_accounts
-  resources :bookings do
 
+  resources :bookings
+  resource :user, only: [:show] do
+  collection do
+    patch 'update_password'
+    get 'edit_password'
   end
+end
+
   
   get "booking_history" => 'bookings#booking_history'
   get "home/index"

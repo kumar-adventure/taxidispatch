@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+
 	before_filter :authenticate_user!
 	
 	def index
@@ -6,4 +7,8 @@ class BookingsController < ApplicationController
 
 	def booking_history
 	end
+
+  def new
+  end
+
 end
