@@ -40,8 +40,8 @@
       <div class="header_menu_wrap">
         <div class="header_menu clearfix">
           <ul class="clearfix">
-            <li><%= link_to "New Booking", booking_path%></li>
-            <li><%= link_to "Booking History", bookings_path%></li>
+            <li><%= link_to "New Booking", bookings_path%></li>
+            <li><%= link_to "Booking History", booking_history_path%></li>
             <li><%= link_to "My Account", my_accounts_path %></li>
             <li><a href="#">My Rides</a></li>
             <li><a href="#">Receipts</a></li>
@@ -77,3 +77,11 @@
     <%= javascript_include_tag "bottum_application", "data-turbolinks-track" => true %>
   </body>
 </html>
+<script>
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+</script>
