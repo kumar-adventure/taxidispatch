@@ -155,7 +155,8 @@ a.header_logo {
     display: block;
     width: 220px;
     height: 46px;
-    background: url(/assets/img/logo.png) 0 0 no-repeat;
+    background-image: image-url("img/logo.png");
+    background-repeat: no-repeat;
 }
 
 .header_userinfo {

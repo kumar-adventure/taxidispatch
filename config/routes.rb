@@ -14,6 +14,7 @@ Taxidispatch::Application.routes.draw do
   end
   
   resources :my_accounts
+
   resources :my_rides do
     collection do
       get 'current_rides'
@@ -21,9 +22,16 @@ Taxidispatch::Application.routes.draw do
       get 'cancelled_rides'
     end
   end
-  resources :new_bookings do
+  
+  resources :bookings
+  resource :user, only: [:show] do
+    collection do
+      patch 'update_password'
+      get 'edit_password'
 
+    end
   end
+
   
   get "booking_history" => 'new_bookings#booking_history'
   get "home/index"

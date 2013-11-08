@@ -36,11 +36,13 @@
       <div class="header_menu_wrap">
         <div class="header_menu clearfix">
           <ul class="clearfix">
-            <li><%= link_to "New Booking", new_bookings_path%></li>
-            <li><a href="booking_history.html">Booking History</a></li>
+            <li><%= link_to "New Booking", new_booking_path%></li>
+            <li><%= link_to "Booking History", bookings_path%></li>
             <li><%= link_to "My Account", my_accounts_path %></li>
+
             <li><%= link_to "My Rides", my_rides_path %></li>
             <li><a href="receipts.html">Receipts</a></li>
+
             <li class="active"><a href="/home/help">Help</a></li>
             <li><a href="/home/email_us" class="modal_ajax" title="Email Us">Email Us</a></li>
           </ul>
@@ -50,9 +52,9 @@
       <%= yield %>
       <div class="footer_empty"></div>
     </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    
+    
+    
     <div class="footer_wrap">
       <div class="footer_bg"></div>
       <div class="footer clearfix">
