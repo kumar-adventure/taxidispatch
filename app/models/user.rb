@@ -3,6 +3,6 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates_length_of :password, :minimum => 8, :maximum => 40, :allow_blank => false
+  validates_length_of :password, :minimum => 8, :maximum => 40, :allow_blank => false,  :on => :create
   attr_accessible :first_name, :last_name, :phone_no, :country, :email, :password, :password_confirmation
 end
