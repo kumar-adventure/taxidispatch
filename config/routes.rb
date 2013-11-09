@@ -17,12 +17,12 @@ Taxidispatch::Application.routes.draw do
   resources :rides
   resources :bookings
   resource :user, only: [:show] do
-  collection do
-    patch 'update_password'
-    get 'edit_password'
-  end
-end
+    collection do
+      patch 'update_password'
+      get 'edit_password'
 
+    end
+  end
   
   get "booking_history" => 'bookings#booking_history'
   get "past_rides" => 'rides#past_rides'
