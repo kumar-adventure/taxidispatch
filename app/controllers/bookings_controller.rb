@@ -20,6 +20,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:pickup_address, :dropoff_address, :via_address, :number_of_bags, :number_of_passengers, :booked_hours, :flight_info, :recurrent_type, :pickup_datetime, :return_pickup_datetime,  :vehicle_preference_attributes => [:id, :number_of_vehicle, :booking_id, :vehicle_type_id])
+    params.require(:booking).permit(:pickup_address, :dropoff_address, :via_address, :number_of_bags, :number_of_passengers, :booked_hours, :flight_info, :recurrent_type, :pickup_datetime, :return_pickup_datetime,  :vehicle_preferences_attributes => [:number_of_vehicle, :booking_id, :vehicle_type_id])
   end
 end
