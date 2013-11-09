@@ -10,12 +10,16 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
-    @booking.vehicle_preferences.build
+    @vehicle_preference = @booking.vehicle_preferences.build
   end
 
   def create
-    @booking = Booking.create(params[:booking].permit(:pickup_address, :dropoff_address, :via_address, :number_of_bags, :number_of_passengers, :booked_hours, :flight_info, :recurrent_type, :pickup_datetime, :return_pickup_datetime,  vehicle_preferences_attributes: [:number_of_vehicle, :booking_id, :vehicle_type_id]))
+    @booking = Booking.create(booking_params)
     @booking.save
+    redirect_to root_url
   end
 
+  def booking_params
+    params.require(:booking).permit(:pickup_address, :dropoff_address, :via_address, :number_of_bags, :number_of_passengers, :booked_hours, :flight_info, :recurrent_type, :pickup_datetime, :return_pickup_datetime,  :vehicle_preference_attributes => [:id, :number_of_vehicle, :booking_id, :vehicle_type_id])
+  end
 end

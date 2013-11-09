@@ -4,7 +4,7 @@
   	<tr>
   		<td class="col1" valign="top">  			
         <hr>
-        <%= form_for :booking, url: bookings_path do |f| %>
+        <%= form_for @booking do |f| %>
           <div class="new_booking_item new_booking_booking">
             <h1>Booking</h1>
             <span class="btn_round">?</span>
@@ -48,7 +48,7 @@
           <div class="new_booking_item">
             <h1>Hours Booked</h1>
             <ul class="form_wrap clearfix">
-              <li><%= f.text_field :booked_hours, :value=>"Enter the number of hours required if known"%></li>
+              <li><%= f.text_field :booked_hours, :placeholder=>"Enter the number of hours required if known"%></li>
             </ul>
           </div>
 
@@ -56,34 +56,34 @@
           <div class="new_booking_item">
             <h1>Flight Info</h1>
             <ul class="form_wrap clearfix">
-              <li><%= f.text_field :flight_info, :value=>"If flying, enter your flight info"%></li>
+              <li><%= f.text_field :flight_info, :placeholder=>"If flying, enter your flight info"%></li>
             </ul>
           </div>
           </td>
           <td class="col2"  valign="top">
           <hr>
-          <%= f.fields_for :vehicle_prefrence do |vp| %>
-          <div class="new_booking_item new_booking_vehicle">
-            <h1>Vehicle Preferences</h1>
-            <span class="btn_round">?</span>
-            <ul class="form_wrap clearfix">
-              <li class="fl-l">
-                <%= vp.select :vehicle_type_id, options_for_select(%w[Vehicle1 Vehicle2 Vehicle3], :class=>"type select_menu") %>
-              </li>
-              <li class="fl-l"><%= vp.text_field :number_of_vehicle, :value=>"Number", :class=>"number spinner"%></li>
-              <li class="fl-r">
-                <a id="show_another_vehicle" href="#" class="btn btn_orange btn_add">+</a>
-              </li>
-            </ul>
-            <ul id="another_vehicle" class="form_wrap clearfix disp-n">
-              <li class="fl-l">
-                <%= vp.select :vehicle_type_id, options_for_select(%w[Vehicle1 Vehicle2 Vehicle3]), :class=>"type select_menu" %>
-              </li>
-              <li class="fl-l"><%= vp.text_field :number_of_vehicle, :value=>"Number", :class=>"number spinner"%></li>
-              
-            </ul>
-          </div>
-          
+          <%= f.fields_for :vehicle_preference do |vp| %>
+            <div class="new_booking_item new_booking_vehicle">
+              <h1>Vehicle Preferences</h1>
+              <span class="btn_round">?</span>
+              <ul class="form_wrap clearfix">
+                <li class="fl-l">
+                  <%= vp.select :vehicle_type_id, options_for_select(%w[1 2 3], :class=>"type select_menu") %>
+                </li>
+                <li class="fl-l"><%= vp.text_field :number_of_vehicle, :placeholder=>"Number", :class=>"number spinner"%></li>
+                <li class="fl-r">
+                  <a id="show_another_vehicle" href="#" class="btn btn_orange btn_add">+</a>
+                </li>
+              </ul>
+              <ul id="another_vehicle" class="form_wrap clearfix disp-n">
+                <li class="fl-l">
+                  <%#= vp.select :vehicle_type_id, options_for_select(%w[1 2 3]), :class=>"type select_menu" %>
+                </li>
+                <li class="fl-l"><%#= vp.text_field :number_of_vehicle, :placeholder=>"Number", :class=>"number spinner"%></li>
+                
+              </ul>
+            </div>
+            
           <% end %>
           <li class="fl-r">
                 <%= f.submit "Submit"%>

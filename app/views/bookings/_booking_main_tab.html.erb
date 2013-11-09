@@ -5,8 +5,8 @@
 
   <div class="content_nav dblshadow">
     <ul>
-      <li class="first <%= get_tab_status(params[:action], 'index') %>">
-        <%= link_to bookings_path do %>
+      <li class="first <%= get_tab_status(params[:action], 'new') %>">
+        <%= link_to new_booking_path do %>
           New Booking<span class="content_nav_arrow"></span>
         <% end %>
       </li>

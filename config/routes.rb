@@ -16,6 +16,7 @@ Taxidispatch::Application.routes.draw do
   resources :my_accounts
   resources :rides
   resources :bookings
+  resources :vehicle_preferences
   resource :user, only: [:show] do
     collection do
       patch 'update_password'
