@@ -1,8 +1,51 @@
 <div class="content new_booking gray_box clearfix">
-	<table>
+ 	<table>
+		<tr>
+			<th class="col1" valign="top"> 
+        <h1>Passenger / Account</h1>
+        <span class="btn_round">?</span>
+      </th>
+      <th class="col2" valign="top">
+        <a href="#" class="btn btn_gray btn_ico"><span class="ico ico_location"></span>Show Suggested Locations</a>
+      </th>
+      <th class="col3" valign="top">
+        <h1>Payment</h1>
+        <span class="btn_round">?</span>
+      </th>
+  	</tr>
 		
-  	<tr>
-  		<td class="col1" valign="top">
+   	<tr>
+   		<td class="col1" valign="top">  			
+         <hr>
+        <div class="new_booking_item new_booking_account">
+          <ul class="form_wrap clearfix">
+            <li><input type="text" value="Benjamin Westrup"></li>
+             <li>
+              <ul>
+                <li><input type="text" value="+447985364480"></li>
+                <li><input type="text" value="Email Address"></li>
+              </ul>
+            </li>
+            <li>
+              <input type="radio" id="main_account_contact" name="account_contact" checked="checked" class="custom_radio"><label for="main_account_contact" class="radiobutton">Main Account Contact</label>
+              <a id="show_minor_contact" href="#" class="btn btn_orange btn_add fl-r">+</a>
+            </li>
+          </ul>
+          <ul id="minor_contact" class="form_wrap clearfix disp-n">
+            <li><input type="text" value="Benjamin Westrup"></li>
+            <li>
+              <ul>
+                <li><input type="text" value="+447985364480"></li>
+                <li><input type="text" value="Email Address"></li>
+              </ul>
+            </li>
+            <li>
+              <input type="radio" id="minor_account_contact" name="account_contact" class="custom_radio"><label for="minor_account_contact" class="radiobutton">Main Account Contact</label>
+              <a href="#" class="btn btn_orange btn_add fl-r">+</a>
+            </li>
+          </ul>
+        </div>
+
         <hr>
         <%= form_for @booking do |f| %>
           <div class="new_booking_item new_booking_booking">
@@ -24,14 +67,15 @@
               </li>
               <li>
                 <ul>
-                  <li><%= f.text_field :pickup_datetime, :class => "input_ico input_ico_date datepicker"%></li>
-                  <li><%= f.text_field :pickup_datetime, :class =>"input_ico input_ico_time timespinner"%></li>
+                  <li><%= f.date_field :pickup_datetime, :class => 
+                  "input_ico input_ico_date datepicker", :value => ""%></li>
+                  <li><%= f.time_field :pickup_time, :class =>"input_ico input_ico_time timespinner"%></li>
                 </ul>
               </li>
               <li>
                 <ul>
-                  <li><%= f.text_field :return_pickup_datetime, :class=>"input_ico input_ico_date datepicker"%></li>
-                  <li><%= f.text_field :return_pickup_datetime, :class=>"input_ico input_ico_time timespinner"%></li>
+                  <li><%#= f.datetime_field :return_pickup_datetime, :class=>"input_ico input_ico_date datepicker", :value => ""%></li>
+                  <li><%#= f.text_field :return_pickup_datetime, :class=>"input_ico input_ico_time timespinner"%></li>
                 </ul>
               </li>
               <li>
@@ -88,7 +132,108 @@
                 <%= f.submit "Submit"%>
               </li>
           <% end %>
+        <hr>
+        <div class="new_booking_fieldset new_booking_extras clearfix">
+          <h1>Extras</h1>
+          <span class="btn_round">?</span>
+          <ul class="form_wrap first fl-l clearfix">
+            <li>
+            	<input id="airport_pickup" type="checkbox" class="custom_checkbox"><label for="airport_pickup" class="checkbox">Airport Pickup</label>
+            </li>
+            <li>
+            	<input id="battery_boosts" type="checkbox" class="custom_checkbox"><label for="battery_boosts" class="checkbox">Battery Boosts</label>
+            </li>
+            <li>
+              <input id="medical_visit" type="checkbox" class="custom_checkbox"><label for="medical_visit" class="checkbox">Medical Visit</label>
+            </li>
+            <li>
+            	<input id="baby_scooter" type="checkbox" class="custom_checkbox"><label for="baby_scooter" class="checkbox">Baby Scooter</label>
+            </li>
+            <li>
+            	<input id="baby_pram" type="checkbox" class="custom_checkbox"><label for="baby_pram" class="checkbox">Baby Pram</label>
+            </li>
+            <li>
+            	<input id="wheelchair" type="checkbox" class="custom_checkbox"><label for="wheelchair" class="checkbox">Wheelchair</label>
+            </li>    
+          </ul>
+          <ul class="form_wrap fl-l clearfix">
+          	<li>
+            	<input id="rush_parcel" type="checkbox" class="custom_checkbox"><label for="rush_parcel" class="checkbox">Rush Parcel Delivery</label>
+            </li>
+            <li>
+            	<input id="event_transportation" type="checkbox" class="custom_checkbox"><label for="event_transportation" class="checkbox">Event Transportation</label>
+            </li>
+            <li>
+            	<input id="luggage" type="checkbox" class="custom_checkbox"><label for="luggage" class="checkbox">Help with Luggage</label>
+            </li>
+            <li>
+              <input id="oversized" type="checkbox" class="custom_checkbox"><label for="oversized" class="checkbox">Oversized Luggage</label>
+            </li>
+            <li>
+            	<input id="multilingual" type="checkbox" class="custom_checkbox"><label for="multilingual" class="checkbox">Multi-Lingual Driver</label>
+            </li>    
+          </ul>
+        </div>
+
+        <hr>
+        <div class="new_booking_fieldset new_booking_accessability clearfix">
+          <h1>Accessability</h1>
+          <span class="btn_round">?</span>
+          <ul class="form_wrap first fl-l clearfix">
+            <li>
+              <input id="access_wheelchair" type="checkbox" class="custom_checkbox"><label for="access_wheelchair" class="checkbox">Wheelchair</label>
+            </li>
+            <li>
+              <input id="carset" type="checkbox" class="custom_checkbox"><label for="carset" class="checkbox">Carseat</label>
+            </li>    
+          </ul>
+          <ul class="form_wrap fl-l clearfix">
+          	<li>
+            	<input id="guide_dob" type="checkbox" class="custom_checkbox"><label for="guide_dob" class="checkbox">Guide Dob</label>
+            </li>
+            <li>
+            	<input id="infant" type="checkbox" class="custom_checkbox"><label for="infant" class="checkbox">Infant</label>
+            </li> 
+          </ul>
+        </div>
+
+        <hr>
+        <div class="new_booking_item new_booking_recurrent">
+          <h1>Recurrent</h1>
+          <span class="btn_round">?</span>
+          <ul class="form_wrap clearfix">
+            <li>
+              <input type="radio" id="single_taxi" name="recurrent" checked="checked" class="custom_radio"><label class="radiobutton" for="single_taxi">Single Taxi Service</label>
+            </li>
+            <li>
+              <input type="radio" id="recurrent_taxi" name="recurrent" class="custom_radio"><label for="recurrent_taxi" class="radiobutton">Recurrent Taxi Service Needed</label>
+            </li>
+          </ul>
+        </div>
+      </td>
+      <td class="col3"  valign="top">
+        <hr>
+        <div class="new_booking_item new_booking_payment">
+          <input type="radio" id="cash" name="payment" checked="checked" class="custom_radio"><label for="cash" class="radiobutton">Cash</label>
+          <input type="radio" id="debit_card" name="payment" class="custom_radio"><label for="debit_card" class="radiobutton">Debit Card</label> 
+          <input type="radio" id="credit_card" name="payment" class="custom_radio"><label for="credit_card" class="radiobutton no-mrg">Credit Card</label>
+          <div class="summary">
+            <p><span>Account:</span>Benjamin Westrup</p>
+            <p><span>Jouney: </span>1hr 49min</p>
+            <p><span>Distance:</span>130.9km</p>
+            <p><span>Fare:</span>€654.70</p>
+            <p class="total"><span>TOTAL:</span>€654.70</p>
+          </div>
+          <button class="btn btn_orange">Book Now</button>
+        </div>
+
+	 		  <div class="new_booking_item new_booking_map">
+				  <h1>Map</h1>
+					<div id="map-canvas-twopoint" class="map_holder">
+					</div>
+					<em>Estimated Distance: 130.9km</em>
+				</div>
   		</td>
-  	</tr>
-  </table>
+   	</tr>
+   </table>
  </div>
