@@ -1,7 +1,8 @@
 class RidesController < ApplicationController
 
 	def index
-	end
+    @rides = Booking.where(:user_id => current_user.id).last
+  end
 
 	def cancelled_rides
 	end
