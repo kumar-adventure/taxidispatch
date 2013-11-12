@@ -5,3 +5,4 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+TexiInfo.create(:texi_no=>"1173", :driver_name=>"rk", :address=>"indore", :city=>"indore", :zipcode=>"452001", :country=>"india",:longitude=>78.042153, :latitude=> 27.174526)
