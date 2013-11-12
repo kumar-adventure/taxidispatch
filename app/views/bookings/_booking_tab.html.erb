@@ -13,7 +13,7 @@
         <span class="btn_round">?</span>
       </th>
   	</tr>
-		
+
    	<tr>
    		<td class="col1" valign="top">  			
          <hr>
@@ -54,8 +54,10 @@
             <ul class="form_wrap clearfix">
               <li class="clearfix">
                 <span>Pick Up:</span>
-                <%= f.text_field :pickup_address %>
-                <a id="show_add_via" href="#" class="addvia fl-r">Add Via</a>
+                <%= f.fields_for :pickup_addresses do |pa|%>
+                  <%= pa.text_field :address %>
+                  <a id="show_add_via" href="#" class="addvia fl-r">Add Via</a>
+                <%end%>
               </li>
               <li id="add_via"class="disp-n">
                 <span>Via:</span>
@@ -63,19 +65,20 @@
               </li>
               <li>
                 <span>Drop Off:</span>
-                <%= f.text_field :dropoff_address %>
+                <%= f.fields_for :dropoff_addresses do |da|%>
+                  <%= da.text_field :address %>
+                <%end%>
               </li>
               <li>
                 <ul>
-                  <li><%= f.date_field :pickup_datetime, :class => 
-                  "input_ico input_ico_date datepicker", :value => ""%></li>
-                  <li><%= f.time_field :pickup_time, :class =>"input_ico input_ico_time timespinner"%></li>
+                  <li><%= f.date_field :pickup_datetime, :class =>"", :placeholder => ""%></li>
+                  <li><%#= f.time_field :pickup_datetime, :class =>""%></li>
                 </ul>
               </li>
               <li>
                 <ul>
-                  <li><%#= f.datetime_field :return_pickup_datetime, :class=>"input_ico input_ico_date datepicker", :value => ""%></li>
-                  <li><%#= f.text_field :return_pickup_datetime, :class=>"input_ico input_ico_time timespinner"%></li>
+                  <li><%= f.date_field :return_pickup_datetime, :class=>"", :value => ""%></li>
+                  <li><%#= f.time_field :return_pickup_datetime, :class=>""%></li>
                 </ul>
               </li>
               <li>
@@ -110,12 +113,16 @@
               <h1>Vehicle Preferences</h1>
               <span class="btn_round">?</span>
               <ul class="form_wrap clearfix">
+                <li>
+                  <ul>
                 <li class="fl-l">
-                  <%= vp.select :vehicle_type_id, options_for_select(%w[1 2 3], :class=>"type select_menu") %>
+                  <%= vp.select(:vehicle_type_id, {"Vehicle 1" => "1","Vehicle 2" => "2","Vehicle 3" => "3"}, :class=>"type select_menu") %>
                 </li>
-                <li class="fl-l"><%= vp.text_field :number_of_vehicle, :placeholder=>"Number", :value => "5"%></li>
+                <li class="fl-l"><%= vp.text_field :number_of_vehicle, :placeholder=>"Number", :value => "5","size" => 150, :maxlenght=>"8"%></li>
                 <li class="fl-r">
                   <a id="show_another_vehicle" href="#" class="btn btn_orange btn_add">+</a>
+                </li>
+                  </ul>
                 </li>
               </ul>
               <ul id="another_vehicle" class="form_wrap clearfix disp-n">
