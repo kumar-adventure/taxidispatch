@@ -40,10 +40,10 @@
       <div class="header_menu_wrap">
         <div class="header_menu clearfix">
           <ul class="clearfix">
-            <li><%= link_to "New Booking", bookings_path%></li>
+            <li><%= link_to "New Booking", new_booking_path%></li>
             <li><%= link_to "Booking History", booking_history_path%></li>
             <li><%= link_to "My Account", my_accounts_path %></li>
-            <li><a href="#">My Rides</a></li>
+            <li><%= link_to "My Rides", rides_path %></li>
             <li><a href="#">Receipts</a></li>
             <li class="active"><a href="/home/help">Help</a></li>
             <li><a href="/home/email_us" class="modal_ajax" title="Email Us">Email Us</a></li>
@@ -81,6 +81,7 @@
 handler = Gmaps.build('Google');
 handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
   markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();
 });
