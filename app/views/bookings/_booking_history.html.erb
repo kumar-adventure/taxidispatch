@@ -1,12 +1,14 @@
 <div class="content_wrap clearfix">
 	<div class="content booking_history gray_box clearfix">
+    <%= form_tag booking_history_path, :method => "get" do %>  
     <div class="table_filters">
       <ul class="form_wrap clearfix">
-        <li class="fl-l"><input type="text" value="Filter by:" class="input_ico input_ico_search"></li>
-        <li class="fl-l"><input type="text" value="Date:" class="input_ico input_ico_search"></li>
-        <li class="fl-l"><input type="text" disabled="disabled" value="Pickup Time" class="input_ico input_ico_time pickup_time timespinner"></li>
+        <li class="fl-l"><%= text_field_tag :pickup_address, params[:pickup_address], :placeholder => 'pickup_address', :class => "input_ico input_ico_search" %></li>
+        <li class="fl-l"><%= text_field_tag :created_at, params[:created_at], :placeholder => 'created_at', :class => "input_ico input_ico_search" %></li>
+        <li class="fl-l"><%= text_field_tag :pickup_time, params[:pickup_time], :placeholder => 'pickup_time', :class => "input_ico input_ico_time pickup_time timespinner" %></li>
       </ul>
     </div>
+    <% end %>
     <table id="booking_history" class="display">
       <thead>
         <tr>
@@ -20,17 +22,23 @@
         </tr>
       </thead>
       <tbody>
+        <% @bookings.each do |booking|%>
         <tr>
-          <td>08 May 2013, 09:21</td>
-          <td>Charlotte Douglas International Airport 5501 Rc Joshua Road Faster and LOnglonglong name witn maaaaany letters</td>
+          <td><%= booking.created_at.strftime("%d %b %Y")%>, <%= booking.created_at.strftime("%H:%M")%></td>
+          <td><%= booking.showpickup_address(booking.id)%> & <%= booking.showdropoff_address(booking.id) %></td>
           <td>160.5 miles</td>
           <td>€ 1415.09</td>
           <td>Benjamin Westrup</td>
           <td>Christopher Walker</td>
           <td>Done</td>
         </tr>
+        <% end %>
       </tbody>
     </table>  
   </div>
+  <%= will_paginate @bookings %>
   <%= link_to "Create a New Booking", bookings_path, :class => "btn btn_orange"  %>
 </div>
+
+            
+       
