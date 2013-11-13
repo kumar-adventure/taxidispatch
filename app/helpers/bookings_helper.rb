@@ -30,5 +30,5 @@ module BookingsHelper
       when 'booking_history'
         "bookings/booking_history"
     end
-  end  
+  end
 end
