@@ -1,9 +1,9 @@
 class RidesController < ApplicationController
-
+before_filter :authenticate_user!
 	def index
     @rides = Booking.where(:user_id => current_user.id).last
-  	@pickup_address = PickupAddress.where(:booking_id => @rides.id).first
-  	@dropoff_address = DropoffAddress.where(:booking_id => @rides.id).first
+  	@pickup_address = PickupAddress.where(:booking_id => @rides.id).first unless @rides.blank?
+  	@dropoff_address = DropoffAddress.where(:booking_id => @rides.id).first unless @rides.blank?
   	@hash = Gmaps4rails.build_markers(@pickup_address) do |user, marker|
 		  marker.lat user.latitude
 		  marker.lng user.longitude
