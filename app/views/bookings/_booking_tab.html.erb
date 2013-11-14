@@ -113,9 +113,11 @@
               <span class="btn_round">?</span>
               <ul class="form_wrap clearfix">
                 <li class="fl-l">
-                  <%= vp.select :vehicle_type_id, VehiclePreference::VEHICLE_PREFERENCE_TYPE, :html_options =>({:class=>"type select_menu"}) %>
+                  <%= vp.select(:vehicle_type_id, VehiclePreference::VEHICLE_PREFERENCE_TYPE, {}, {:class => "type select_menu"}) %>
                 </li>
-                <li class="fl-l"><%= vp.text_field :number_of_vehicle, :placeholder=>"Number", :value => "5","size" => 150, :class=>"number "%></li>
+                <li class="fl-l">
+                <%= vp.text_field :number_of_vehicle, :placeholder=>"Number", :class=>"number spinner"%>
+                </li>
                 <li class="fl-r">
                   <a id="show_another_vehicle" href="#" class="btn btn_orange btn_add">+</a>
                 </li>
