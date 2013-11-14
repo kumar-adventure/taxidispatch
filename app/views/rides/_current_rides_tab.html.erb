@@ -18,12 +18,12 @@
         <div class="clearfix">
           <div class="current_rides_item pickup fl-l">
             <h3>Pickup:</h3>
-            <p><%= @pickup_address.address %></p>
+            <p><%= @pickup_address.try(:address) %></p>
             <p>Alexandria, VA 22314</p>
           </div>
           <div class="current_rides_item dropoff fl-l">
             <h3>Drop Off:</h3>
-            <p><%= @dropoff_address.address %></p>
+            <p><%= @dropoff_address.try(:address) %></p>
             <p>Alexandria, VA 22314</p>
           </div>
         </div>
