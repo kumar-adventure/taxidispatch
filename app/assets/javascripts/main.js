@@ -219,7 +219,9 @@ $(document).ready( function() {
   	/* Datapicker Menu jQ UI */
   	/* ================================================ */
 
-  	$( ".datepicker" ).datepicker();
+  	$( ".datepicker" ).datepicker({
+  		dateFormat : "dd/mm/yy"
+  	});
 
 });
 

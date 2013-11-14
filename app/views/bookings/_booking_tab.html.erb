@@ -70,20 +70,20 @@
               </li>
               <li>
                 <ul>
-                  <li><%= f.date_field :pickup_datetime, :class =>"input_ico input_ico_date ", :placeholder => "", :style => "width: 115px;"%></li>
-                  <li><%= f.time_field :pickup_time, :class =>"input_ico input_ico_time ", :value => ""%></li>
+                  <li><%= f.text_field :pickup_datetime, :class =>"input_ico input_ico_date datepicker", :placeholder => "Pickup Date"%></li>
+                  <li><%= f.text_field :pickup_time, :class =>"input_ico input_ico_time "%></li>
                 </ul>
               </li>
               <li>
                 <ul>
-                  <li><%= f.date_field :return_pickup_datetime, :class=>"input_ico input_ico_date", :value => "", :style => "width: 115px;"%></li>
-                  <li><%= f.time_field :dropoff_time, :class=>"input_ico input_ico_time ", :value => ""%></li>
+                  <li><%= f.text_field :return_pickup_datetime, :class=>"input_ico input_ico_date datepicker", :placeholder =>"Return Pickup Date"%></li>
+                  <li><%= f.text_field :dropoff_time, :class=>"input_ico input_ico_time "%></li>
                 </ul>
               </li>
               <li>
                 <ul>
-                  <li><%= f.text_field :number_of_bags, :id=>"bags", :value=>"0"%></li>
-                  <li><%= f.text_field :number_of_passengers, :id=>"passenter", :value=>"0"%></li>
+                  <li><%= f.text_field :number_of_bags, :placeholder=> "Bags", :value => "" %></li>
+                  <li><%= f.text_field :number_of_passengers, :placeholder=> "Passengers", :value => ""  %></li>
                 </ul>
               </li>
             </ul>
@@ -116,7 +116,7 @@
                   <%= vp.select(:vehicle_type_id, VehiclePreference::VEHICLE_PREFERENCE_TYPE, {}, {:class => "type select_menu"}) %>
                 </li>
                 <li class="fl-l">
-                <%= vp.text_field :number_of_vehicle, :placeholder=>"Number", :class=>"number spinner"%>
+                <%= vp.text_field :number_of_vehicle, :placeholder=>"Number", :class=>"number"%>
                 </li>
                 <li class="fl-r">
                   <a id="show_another_vehicle" href="#" class="btn btn_orange btn_add">+</a>
