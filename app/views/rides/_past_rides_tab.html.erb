@@ -18,22 +18,22 @@
       <% @rides.each do |rides|%>
       <div class="grid_item_content">
         <div class="clearfix">
-          <h2 class="fl-l"><%= past_date %> Taxi Ride:</h2>
+          <h2 class="fl-l"><%= past_date(rides.created_at) %> Taxi Ride:</h2>
         </div>
         <div class="current_rides_item">
           <h3>Taxi Company:</h3>
-          <p>Alexandria Yellow Cab</p>
-          <p>(703) 549-2500</p>
+          <p><%= @texi.taxi_company_name%></p>
+          <p><%= @texi.taxi_company_phone_no%></p>
         </div>
         <div class="clearfix">
           <div class="current_rides_item pickup fl-l">
             <h3>Pickup:</h3>
-            <p><%= rides.pickup_address %></p>
+            <p><%= rides.showpickup_address(rides.id) %></p>
             <p>Alexandria, VA 22314</p>
           </div>
           <div class="current_rides_item dropoff fl-l">
             <h3>Drop Off:</h3>
-            <p><%= rides.dropoff_address %></p>
+            <p><%= rides.showdropoff_address(rides.id) %></p>
             <p>Alexandria, VA 22314</p>
           </div>
         </div>
@@ -42,20 +42,10 @@
       
     </div>
     <div class="pagination fl-r clearfix">
-      <div class="fl-l">1 - 10 of 14 </div>
-      <div class="fl-l">
-        <div class="paging_full_numbers">
-          <a href="#" class="first paginate_button paginate_button_disabled">First</a>
-          <a href="#" class="previous paginate_button paginate_button_disabled">Previous</a>
-          <span>
-            <a href="#" class="paginate_active">1</a>
-            <a href="#" class="paginate_button">2</a>
-          </span>
-          <a href="#" class="next paginate_button">Next</a>
-          <a href="#" class="last paginate_button">Last</a>
-        </div>
-      </div>
+    <div class="fl-l">
+      <%= will_paginate @rides, :class=>"paging_full_numbers"%>
     </div>
+  </div> 
   </div>
   <div class="col3 sidebar fl-r">
     <div class="grid_item gray_box">

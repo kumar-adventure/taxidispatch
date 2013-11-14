@@ -33,4 +33,12 @@ module RidesHelper
         "rides/cancelled_rides_tab"
     end
   end
+
+  def current_date
+    Time.now.strftime("%b %d, %Y")
+  end
+  
+  def past_date(date)
+    date.strftime("%b %d, %Y")
+  end
 end

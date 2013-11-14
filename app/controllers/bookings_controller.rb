@@ -6,8 +6,7 @@ class BookingsController < ApplicationController
 	end
 
 	def booking_history
-    @bookings = Booking.all
-    @bookings = Booking.paginate :page => params[:page] || 1, :order => 'created_at DESC'
+    @bookings = Booking.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 10)
 	end
 
   def new

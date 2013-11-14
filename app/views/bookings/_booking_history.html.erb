@@ -3,9 +3,9 @@
     <%= form_tag booking_history_path, :method => "get" do %>  
     <div class="table_filters">
       <ul class="form_wrap clearfix">
-        <li class="fl-l"><%= text_field_tag :pickup_address, params[:pickup_address], :placeholder => 'pickup_address', :class => "input_ico input_ico_search" %></li>
-        <li class="fl-l"><%= text_field_tag :created_at, params[:created_at], :placeholder => 'created_at', :class => "input_ico input_ico_search" %></li>
-        <li class="fl-l"><%= text_field_tag :pickup_time, params[:pickup_time], :placeholder => 'pickup_time', :class => "input_ico input_ico_time pickup_time timespinner" %></li>
+        <li class="fl-l"><%= text_field_tag :pickup_address, params[:pickup_address], :placeholder => 'filter by address', :class => "input_ico input_ico_search" %></li>
+        <li class="fl-l"><%= text_field_tag :created_at, params[:created_at], :placeholder => 'filter by date', :class => "input_ico input_ico_search" %></li>
+        <li class="fl-l"><%= text_field_tag :pickup_time, params[:pickup_time], :placeholder => 'filter by time', :class => "input_ico input_ico_time pickup_time timespinner" %></li>
       </ul>
     </div>
     <% end %>
@@ -28,7 +28,7 @@
           <td><%= booking.showpickup_address(booking.id)%> & <%= booking.showdropoff_address(booking.id) %></td>
           <td>160.5 miles</td>
           <td>€ 1415.09</td>
-          <td>Benjamin Westrup</td>
+          <td><%= booking.passenger_name %></td>
           <td>Christopher Walker</td>
           <td>Done</td>
         </tr>
@@ -36,8 +36,12 @@
       </tbody>
     </table>  
   </div>
-  <%= will_paginate @bookings %>
-  <%= link_to "Create a New Booking", bookings_path, :class => "btn btn_orange"  %>
+  <div class="pagination fl-r clearfix">
+    <div class="fl-l">
+      <%= will_paginate @bookings, :class=>"paging_full_numbers"%>
+    </div>
+  </div> 
+  <%= link_to "Create a New Booking", new_booking_path, :class => "btn btn_orange"  %>
 </div>
 
             

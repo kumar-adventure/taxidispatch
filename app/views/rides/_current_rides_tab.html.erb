@@ -7,23 +7,23 @@
       <hr>
       <div class="grid_item_content">
         <div class="clearfix">
-          <h2 class="fl-l">May 07, 2013 Taxi Ride:</h2>
+          <h2 class="fl-l"><%= current_date %> Taxi Ride:</h2>
           <button class="btn btn_orange fixed_width fl-r">Edit Details</button>
         </div>
         <div class="current_rides_item">
           <h3>Taxi Company:</h3>
-          <p>Alexandria Yellow Cab</p>
-          <p>(703) 549-2500</p>
+          <p><%= @texi.taxi_company_name%></p>
+          <p><%= @texi.taxi_company_phone_no%></p>
         </div>
         <div class="clearfix">
           <div class="current_rides_item pickup fl-l">
             <h3>Pickup:</h3>
-            <p><%= @rides.pickup_address rescue "" %></p>
+            <p><%= @pickup_address.address %></p>
             <p>Alexandria, VA 22314</p>
           </div>
           <div class="current_rides_item dropoff fl-l">
             <h3>Drop Off:</h3>
-            <p><%= @rides.dropoff_address rescue "" %></p>
+            <p><%= @dropoff_address.address %></p>
             <p>Alexandria, VA 22314</p>
           </div>
         </div>

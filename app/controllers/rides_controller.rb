@@ -4,6 +4,7 @@ before_filter :authenticate_user!
     @rides = Booking.where(:user_id => current_user.id).last
   	@pickup_address = PickupAddress.where(:booking_id => @rides.id).first unless @rides.blank?
   	@dropoff_address = DropoffAddress.where(:booking_id => @rides.id).first unless @rides.blank?
+    @texi = TexiInfo.last
   	@hash = Gmaps4rails.build_markers(@pickup_address) do |user, marker|
 		  marker.lat user.latitude
 		  marker.lng user.longitude
@@ -30,5 +31,7 @@ before_filter :authenticate_user!
 	end
 
 	def past_rides
+    @texi = TexiInfo.last
+    @rides = Booking.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 10)
 	end
 end
