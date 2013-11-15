@@ -1,10 +1,14 @@
 class RidesController < ApplicationController
 before_filter :authenticate_user!
 	def index
-    @rides = Booking.where(:user_id => current_user.id).last
+    @rides = Booking.where(:user_id => current_user.id).where('pickup_time <= ? AND dropoff_time >= ?', Time.now,  Time.now).where(:pickup_datetime => Time.now.to_date).order('pickup_datetime ASC').first rescue 0
+ 
+    if @rides.blank?
+      @rides = Booking.where(:user_id => current_user.id).where(:pickup_datetime => Date.today..Date.today.next_month).order('pickup_datetime ASC').first
+    end
   	@pickup_address = PickupAddress.where(:booking_id => @rides.id).first unless @rides.blank?
   	@dropoff_address = DropoffAddress.where(:booking_id => @rides.id).first unless @rides.blank?
-    @texi = TexiInfo.last
+    @texi = TexiInfo.where(:id => @rides.taxi_info_id).first
   	@hash = Gmaps4rails.build_markers(@pickup_address) do |user, marker|
 		  marker.lat user.latitude
 		  marker.lng user.longitude

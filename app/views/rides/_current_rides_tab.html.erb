@@ -12,8 +12,8 @@
         </div>
         <div class="current_rides_item">
           <h3>Taxi Company:</h3>
-          <p><%= @texi.taxi_company_name%></p>
-          <p><%= @texi.taxi_company_phone_no%></p>
+          <p><%= @texi.try(:taxi_company_name)%></p>
+          <p><%= @texi.try(:taxi_company_phone_no)%></p>
         </div>
         <div class="clearfix">
           <div class="current_rides_item pickup fl-l">
