@@ -48,24 +48,26 @@
         <h1>All Current Rides</h1>
       </div>
       <hr>
-      <div class="grid_item_content">
-        <div class="all_current_rides_item">
-          <p>
-            <strong>Tuesday, 05/07 at 9:50PM</strong>
-          </p>
-          <p>
-            Alexandria, VA <span class="current_rides_highlight">Current Rides</span>
-          </p>
+      <% @all_current_rides.each do |all_rides|%>
+        <div class="grid_item_content">
+          <div class="all_current_rides_item">
+            <p>
+              <strong><%= current_rides_pickup_date(all_rides.try(:pickup_datetime))%> at <%= current_rides_pickup_time(all_rides.try(:pickup_time))%></strong>
+            </p>
+            <p>
+              <%= @pickup_address.try(:address) %> <span class="current_rides_highlight">Current Rides</span>
+            </p>
+          </div>
+          <div class="all_current_rides_item">
+            <p>
+              <strong>Wednesday, 05/08 at 11:30PM</strong>
+            </p>
+            <p>
+              Alexandria, VA <a href="#">View Details</a>
+            </p>
+          </div>          
         </div>
-        <div class="all_current_rides_item">
-          <p>
-            <strong>Wednesday, 05/08 at 11:30PM</strong>
-          </p>
-          <p>
-            Alexandria, VA <a href="#">View Details</a>
-          </p>
-        </div>          
-      </div>
+      <%end%>
     </div>
   </div>
 </div>

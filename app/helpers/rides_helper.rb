@@ -39,6 +39,19 @@ module RidesHelper
   end
   
   def past_date(date)
-    date.strftime("%b %d, %Y")
+    date.strftime("%b %d, %Y") rescue 0
   end
+  
+  def get_taxi_info(taxi_info_id)
+    @texi = TexiInfo.where(:id => taxi_info_id).first
+  end
+  
+  def current_rides_pickup_date(date)
+    date.strftime("%A, %m/%d") rescue 0
+  end
+  
+  def current_rides_pickup_time(time)
+    time.strftime("%H:%M%p") rescue 0
+  end
+  
 end

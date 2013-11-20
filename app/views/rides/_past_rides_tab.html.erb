@@ -3,27 +3,30 @@
     <div class="grid_item current_rides gray_box">
       <div class="grid_item_headings clearfix">
         <h1 class="fl-l">Past Rides</h1>
+        <%= form_tag past_rides_path, :params => params, :method => "get" do %>
         <div class="fl-r">
           <ul class="form_wrap clearfix">
             <li class="no-mrg">
               <ul>
-                <li class="fl-l no-mrg">From <input type="text" value="Start Date" class="input_ico input_ico_date datepicker"></li>
-                <li class="fl-l no-mrg">&nbsp;to<input type="text" value="End Date" class="input_ico input_ico_date datepicker"></li>
+                <li class="fl-l no-mrg">From <%= text_field_tag :pickup_datetime, params[:pickup_datetime], :placeholder =>"Start Date", :class =>"input_ico input_ico_date datepicker"%></li>
+                <li class="fl-l no-mrg">&nbsp;to<%= text_field_tag :return_pickup_datetime, params[:return_pickup_datetime], :placeholder =>"End Date", :class => "input_ico input_ico_date datepicker"%></li>
               </ul>
             </li>
+                <%= submit_tag 'Submit' %>
           </ul>
         </div>
+        <% end %>
       </div>
       <hr>
       <% @rides.each do |rides|%>
       <div class="grid_item_content">
         <div class="clearfix">
-          <h2 class="fl-l"><%= past_date(rides.created_at) %> Taxi Ride:</h2>
+          <h2 class="fl-l"><%= past_date(rides.try(:pickup_datetime)) %> Taxi Ride:</h2>
         </div>
         <div class="current_rides_item">
           <h3>Taxi Company:</h3>
-          <p><%= @texi.taxi_company_name%></p>
-          <p><%= @texi.taxi_company_phone_no%></p>
+          <p><%= get_taxi_info(rides.taxi_info_id).try(:taxi_company_name)%></p>
+          <p><%= get_taxi_info(rides.taxi_info_id).try(:taxi_company_phone_no)%></p>
         </div>
         <div class="clearfix">
           <div class="current_rides_item pickup fl-l">
@@ -62,13 +65,14 @@
         <h1>All Past Rides</h1>
       </div>
       <hr>
+      <% @rides.each do |past_rides|%>
       <div class="grid_item_content">
         <div class="all_current_rides_item">
           <p>
-            <strong>Tuesday, 05/07 at 9:50PM</strong>
+            <strong><%= current_rides_pickup_date(past_rides.try(:pickup_datetime))%> at <%= current_rides_pickup_time(past_rides.try(:pickup_time))%></strong>
           </p>
           <p>
-            Alexandria, VA <span class="current_rides_highlight">Current Rides</span>
+            <%= past_rides.showpickup_address(past_rides.id) %> <span class="current_rides_highlight">Current Rides</span>
           </p>
         </div>
         <div class="all_current_rides_item">
@@ -80,6 +84,7 @@
           </p>
         </div>
       </div>
+      <%end%>
     </div>
   </div>
 </div>
