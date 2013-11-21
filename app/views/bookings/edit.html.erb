@@ -1,0 +1,31 @@
+<div class="modal_wrap">
+  <%= form_for @booking, url: booking_path do |f| %>
+    <ul class="form_wrap clearfix">
+      <li>
+        <span>Pick Up:</span>
+        <%= f.fields_for :pickup_addresses do |pa|%>
+          <%= pa.text_field :address %>
+        <%end%>
+      </li>
+      <li>
+        <span>Drop Off:</span>
+        <%= f.fields_for :dropoff_addresses do |da|%>
+          <%= da.text_field :address %>
+        <%end%>
+      </li>
+      <li>
+          <span>Pickup_date:</span>
+          <%= f.text_field :pickup_datetime %>
+      </li>
+      <li>
+          <span>Pickup_time:</span>
+          <%= f.text_field :pickup_time %>
+      </li>
+    </ul>
+
+    <div class="modal_twobutton">
+      <%= f.submit "Save Changes", :class => "btn btn_orange" %>
+      <%= f.submit "Cancel", :class => "btn btn_gray_onblack" %>
+    </div>
+  <% end %>
+</div>

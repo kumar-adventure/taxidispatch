@@ -8,7 +8,7 @@
       <div class="grid_item_content">
         <div class="clearfix">
           <h2 class="fl-l"><%= current_date %> Taxi Ride:</h2>
-          <button class="btn btn_orange fixed_width fl-r">Edit Details</button>
+          <%= link_to "Edit Details", edit_booking_path(@rides.id), :class => "modal_ajax btn btn_orange fixed_width fl-r cboxElement", :title => "Edit Details" %>
         </div>
         <div class="current_rides_item">
           <h3>Taxi Company:</h3>
