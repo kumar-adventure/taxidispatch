@@ -31,4 +31,13 @@ module BookingsHelper
         "bookings/booking_history"
     end
   end
+  
+  def booking_pickup_date(date)
+    date.strftime("%d %b %Y") rescue 0
+  end
+  
+  def booking_pickup_time(time)
+    time.strftime("%H:%M") rescue 0
+  end
+  
 end

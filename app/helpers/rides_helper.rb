@@ -37,7 +37,7 @@ module RidesHelper
   def current_date
     Time.now.strftime("%b %d, %Y")
   end
-  
+
   def past_date(date)
     date.strftime("%b %d, %Y") rescue 0
   end
@@ -53,5 +53,4 @@ module RidesHelper
   def current_rides_pickup_time(time)
     time.strftime("%H:%M%p") rescue 0
   end
-  
 end

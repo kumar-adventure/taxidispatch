@@ -2,13 +2,13 @@
   <div class="col3 col3_span fl-l">
     <div class="grid_item current_rides gray_box">
       <div class="grid_item_headings clearfix">
-          <h1>Current Rides</h1>
+          <h1>Current Ride</h1>
       </div>
       <hr>
       <div class="grid_item_content">
         <div class="clearfix">
-          <h2 class="fl-l"><%= current_date %> Taxi Ride:</h2>
-          <%= link_to "Edit Details", edit_booking_path(@rides.id), :class => "modal_ajax btn btn_orange fixed_width fl-r cboxElement", :title => "Edit Details" %>
+          <h2 class="fl-l"><%= current_rides_pickup_date(@rides.try(:pickup_datetime)) %> Taxi Ride:</h2>
+          <%= link_to "Edit Details", edit_booking_path(@rides.try(:id)), :class => "modal_ajax btn btn_orange fixed_width fl-r cboxElement", :title => "Edit Details" %>
         </div>
         <div class="current_rides_item">
           <h3>Taxi Company:</h3>
@@ -19,12 +19,10 @@
           <div class="current_rides_item pickup fl-l">
             <h3>Pickup:</h3>
             <p><%= @pickup_address.try(:address) %></p>
-            <p>Alexandria, VA 22314</p>
           </div>
           <div class="current_rides_item dropoff fl-l">
             <h3>Drop Off:</h3>
             <p><%= @dropoff_address.try(:address) %></p>
-            <p>Alexandria, VA 22314</p>
           </div>
         </div>
       </div>

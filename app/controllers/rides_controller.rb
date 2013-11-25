@@ -4,7 +4,7 @@ before_filter :authenticate_user!
     @rides = Booking.where(:user_id => current_user.id).where('pickup_time <= ? AND dropoff_time >= ?', Time.now,  Time.now).where(:pickup_datetime => Time.now.to_date).order('pickup_datetime ASC').first rescue 0
 
     if @rides.blank?
-      @rides = Booking.where(:user_id => current_user.id).where(:pickup_datetime => Date.today..Date.today.next_month).order('pickup_datetime ASC').first
+      @rides = Booking.where(:user_id => current_user.id).where(:pickup_datetime => Date.today..Date.today.next_month).order('pickup_datetime ASC').first rescue 0
     end
   	@pickup_address = PickupAddress.where(:booking_id => @rides.id).first unless @rides.blank?
   	@dropoff_address = DropoffAddress.where(:booking_id => @rides.id).first unless @rides.blank?
