@@ -12,7 +12,7 @@ Taxidispatch::Application.routes.draw do
       patch 'update_password'
     end
   end
-  
+
   resources :my_accounts
   resources :rides
   resources :bookings
@@ -24,7 +24,7 @@ Taxidispatch::Application.routes.draw do
 
     end
   end
-  
+
   get "booking_history" => 'bookings#booking_history'
   get "past_rides" => 'rides#past_rides'
   get "cancelled_rides" => 'rides#cancelled_rides'
@@ -32,6 +32,7 @@ Taxidispatch::Application.routes.draw do
   get "home/index"
   get "home/help"
   get "home/email_us"
+  post "home/nearest_texi"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

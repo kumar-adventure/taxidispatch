@@ -1,11 +1,4 @@
-<div class="content_wrap clearfix">
+<div class="content_wrap clearfix" id="search_texi">
   <%= render :partial => 'home_page_tab' %>
 </div>
-<script>
-handler = Gmaps.build('Google');
-handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
-</script>
+

@@ -1,7 +1,7 @@
 <div class="content home clearfix">
   <div class="gray_box clearfix">
     <div class="home_map fl-l">
-      <div id="map" class="map_holder"></div>     
+      <div id="map" class="map_holder"></div>
     </div>
     <div class="home_sidebar fl-r">
       <ul class="home_sidebar_menu">
@@ -13,9 +13,35 @@
     </div>
   </div>
   <div class="home_searchbar">
-    <ul class="form_wrap clearfix">
-      <li class="fl-l"><input type="text" value="Pick Up" class="input_ico_right input_ico_search"></li>
-      <li class="fl-l"><button class="btn btn_orange">Book the Nearest Taxi</button></li>
-    </ul>
+    <%= form_tag home_nearest_texi_path do %>
+      <ul class="form_wrap clearfix">
+        <li class="fl-l"><%= text_field_tag :placeholder=>"Pick Up", :class=>"input_ico_right input_ico_search", :id=>"pick_up_home_id" %></li>
+        <li class="fl-l"> <%= submit_tag "Book the Nearest Taxi", :class => "btn btn_orange" %></li>
+      </ul>
+    <%end%>
   </div>
 </div>
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+  jQuery("#pick_up_home_id").change(function(event){
+    alert("Thanks for visiting!");
+    $.ajax({
+      url: "<%= home_nearest_texi_path %>",
+      type: "POST",
+      data: 'pick_up_id='+$(this).val(),
+      success: function(data){
+      }
+    });
+  });
+});
+</script>
+
+<script>
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+</script>
