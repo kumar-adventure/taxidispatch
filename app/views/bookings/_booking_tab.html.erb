@@ -54,7 +54,7 @@
               <li class="clearfix">
                 <span>Pick Up:</span>
                 <%= f.fields_for :pickup_addresses do |pa|%>
-                  <%= pa.text_field :address %>
+                  <%= pa.text_field :address, :value => "#{params[:pickup_nearest_texi]}" %>
                   <a id="show_add_via" href="#" class="addvia fl-r">Add Via</a>
                 <%end%>
               </li>

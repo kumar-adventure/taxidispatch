@@ -1,7 +1,7 @@
 <div class="content home clearfix">
   <div class="gray_box clearfix">
-    <div class="home_map fl-l">
-      <div id="map" class="map_holder"></div>
+    <div class="home_map fl-l" id="search_texi">
+      <%= render :partial => "taxi_location_map"%>
     </div>
     <div class="home_sidebar fl-r">
       <ul class="home_sidebar_menu">
@@ -13,9 +13,11 @@
     </div>
   </div>
   <div class="home_searchbar">
-    <%= form_tag home_nearest_texi_path do %>
+    <%= form_tag new_booking_path, :method => 'get' do %>
+    <% hash = @texi_info %>
+      <%= hidden_field_tag 'texi_id', '#{hash}' %>
       <ul class="form_wrap clearfix">
-        <li class="fl-l"><%= text_field_tag :placeholder=>"Pick Up", :class=>"input_ico_right input_ico_search", :id=>"pick_up_home_id" %></li>
+        <li class="fl-l"><%= text_field_tag 'pickup_nearest_texi', nil, :placeholder => "Pick Up", :class => "input_ico_right input_ico_search" %></li>
         <li class="fl-l"> <%= submit_tag "Book the Nearest Taxi", :class => "btn btn_orange" %></li>
       </ul>
     <%end%>
@@ -24,8 +26,7 @@
 
 <script type="text/javascript">
 jQuery(document).ready(function(){
-  jQuery("#pick_up_home_id").change(function(event){
-    alert("Thanks for visiting!");
+  jQuery("#pickup_nearest_texi").keypress(function(event){
     $.ajax({
       url: "<%= home_nearest_texi_path %>",
       type: "POST",
@@ -34,14 +35,5 @@ jQuery(document).ready(function(){
       }
     });
   });
-});
-</script>
-
-<script>
-handler = Gmaps.build('Google');
-handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
 });
 </script>
