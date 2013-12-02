@@ -35,7 +35,7 @@ class BookingsController < ApplicationController
   end
   
   def booking_texi
-    @booking = Booking.where(:user_id => 8).where('pickup_time <= ? AND dropoff_time >= ?', Time.now,  Time.now).where(:pickup_datetime => Time.now.to_date).where(:return_pickup_datetime => Time.now.to_date).order('pickup_datetime ASC').first rescue 0
+    @bookings = Booking.where(:user_id => current_user.id).where('pickup_time <= ? AND dropoff_time >= ?', Time.now,  Time.now).where(:pickup_datetime => Time.now.to_date).where(:return_pickup_datetime => Time.now.to_date).order('pickup_datetime ASC').first rescue 0
     @ids = []
     unless @booking.blank?
       @bookings.each do |booking|

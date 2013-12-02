@@ -71,19 +71,23 @@
               <li>
                 <ul>
                   <li><%= f.text_field :pickup_datetime, :class =>"input_ico input_ico_date datepicker", :placeholder => "Pickup Date"%></li>
-                  <li><%= f.text_field :pickup_time, :class =>"input_ico input_ico_time "%></li>
+                  <li><%= text_field_tag 'pickup_time1', nil,:class =>"input_ico input_ico_time timespinner",:id => "pickup_time"%></li>
+                  <li><%= f.hidden_field :pickup_time ,:id => "pickup_time_id"%></li>
                 </ul>
               </li>
               <li>
                 <ul>
                   <li><%= f.text_field :return_pickup_datetime, :class=>"input_ico input_ico_date datepicker", :placeholder =>"Return Pickup Date"%></li>
-                  <li><%= f.text_field :dropoff_time, :class=>"input_ico input_ico_time "%></li>
+                  <li><%= text_field_tag 'dropoff_time', nil , :class=>"input_ico input_ico_time timespinner", :id => "dropoff_time"%></li>
+                  <li><%= f.hidden_field :dropoff_time ,:id => "dropoff_time_id"%></li>
                 </ul>
               </li>
               <li>
                 <ul>
-                  <li><%= f.text_field :number_of_bags, :placeholder=> "Bags", :value => "" %></li>
-                  <li><%= f.text_field :number_of_passengers, :placeholder=> "Passengers", :value => ""  %></li>
+                  <li><%= text_field_tag 'number_of_bags', nil , :placeholder=> "Bags",:class=>"number spinner", :id => "number_of_bags" %></li>
+                  <li><%= f.hidden_field :number_of_bags ,:id => "number_of_bags_id"%></li>
+                  <li><%= text_field_tag :number_of_passengers1, nil , :placeholder=> "Passengers", :class=>"number spinner", :id => "number_of_passengers"  %></li>
+                  <li><%= f.hidden_field :number_of_passengers ,:id => "number_of_passengers_id"%></li>
                 </ul>
               </li>
             </ul>
@@ -116,7 +120,8 @@
                   <%= vp.select(:vehicle_type_id, VehiclePreference::VEHICLE_PREFERENCE_TYPE, {}, {:class => "type select_menu"}) %>
                 </li>
                 <li class="fl-l">
-                <%= vp.text_field :number_of_vehicle, :placeholder=>"Number", :class=>"number"%>
+                <%= text_field_tag 'number_of_vehicle1', nil , :placeholder=>"Number",:class=>"number spinner",:id => "number_of_vehicle"%>
+                <%= vp.hidden_field :number_of_vehicle ,:id => "number_of_vehicle_id"%>
                 </li>
                 <li class="fl-r">
                   <a id="show_another_vehicle" href="#" class="btn btn_orange btn_add">+</a>
@@ -223,7 +228,7 @@
               <p><span>Fare:</span>€654.70</p>
               <p class="total"><span>TOTAL:</span>€654.70</p>
             </div>
-            <%= button_tag(:class => 'btn btn_orange') do %>
+            <%= button_tag(:class => 'btn btn_orange', :id =>"book_now") do %>
               Book Now
             <%end%>
           </div>
@@ -239,3 +244,15 @@
     <% end %>
    </table>
  </div>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#book_now").click(function() {
+        $('#pickup_time_id').val($('#pickup_time').val());
+        $('#dropoff_time_id').val($('#dropoff_time').val());
+        $('#number_of_bags_id').val($('#number_of_bags').val());
+        $('#number_of_passengers_id').val($('#number_of_passengers').val());
+        $('#number_of_vehicle_id').val($('#number_of_vehicle').val());
+      });
+    });
+           
+  </script>       
