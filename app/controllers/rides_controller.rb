@@ -41,6 +41,9 @@ before_filter :authenticate_user!
       from_date = DateTime.parse(params[:pickup_datetime]).strftime("%Y-%m-%d") 
       to_date = DateTime.parse(params[:return_pickup_datetime]).strftime("%Y-%m-%d")
       @rides = Booking.where(:user_id => current_user.id).where(:pickup_datetime => from_date..to_date).where('pickup_datetime < ?', Time.now.to_date).paginate(:page => params[:page], :per_page => 10).order('pickup_datetime ASC')
+      respond_to do |format|
+        format.js
+      end
     else
       @rides = Booking.where(:user_id => current_user.id).where('pickup_datetime < ?', Time.now.to_date).paginate(:page => params[:page], :per_page => 10).order('pickup_datetime ASC')
     end
