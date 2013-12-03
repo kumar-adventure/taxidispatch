@@ -48,6 +48,36 @@ class BookingsController < ApplicationController
     return 1
   end
 
+  def show_new_booking_map
+    @pickup_address = Geocoder.search(params[:pick_up_addr]).first
+    @dropoff_address = Geocoder.search(params[:drop_off_addr]).first
+  	@hash = Gmaps4rails.build_markers(@pickup_address) do |user, marker|
+		  marker.lat user.latitude
+		  marker.lng user.longitude
+		  marker.infowindow params[:pick_up_addr]
+		  marker.picture({
+		  	"url" => "/assets/img/ico/map/ico_location_mark_a.png",
+        "width" =>  36,
+        "height" => 36
+		  	})
+		end
+  	@hash1 = Gmaps4rails.build_markers(@dropoff_address) do |user, marker|
+		  marker.lat user.latitude
+		  marker.lng user.longitude
+		  marker.infowindow params[:drop_off_addr]
+		  marker.picture({
+		  	"url" => "/assets/img/ico/map/ico_location_mark_b.png",
+        "width" =>  36,
+        "height" => 36
+		  	})
+		end
+
+    @loc_distance = Geocoder::Calculations.distance_between(params[:pick_up_addr], params[:drop_off_addr], :units=> :km).round(1)
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
   def booking_params
     params[:booking][:user_id] = current_user.id

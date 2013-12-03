@@ -233,26 +233,40 @@
             <%end%>
           </div>
 
-  	 		  <div class="new_booking_item new_booking_map">
+  	 		  <div class="new_booking_item new_booking_map" id="new_booking_map_id">
   				  <h1>Map</h1>
-  					<div id="map-canvas-twopoint" class="map_holder">
-  					</div>
-  					<em>Estimated Distance: 130.9km</em>
+            <%= render :partial => "new_booking_map" %>
   				</div>
     		</td>
      	</tr>
     <% end %>
    </table>
  </div>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $("#book_now").click(function() {
-        $('#pickup_time_id').val($('#pickup_time').val());
-        $('#dropoff_time_id').val($('#dropoff_time').val());
-        $('#number_of_bags_id').val($('#number_of_bags').val());
-        $('#number_of_passengers_id').val($('#number_of_passengers').val());
-        $('#number_of_vehicle_id').val($('#number_of_vehicle').val());
-      });
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#book_now").click(function() {
+      $('#pickup_time_id').val($('#pickup_time').val());
+      $('#dropoff_time_id').val($('#dropoff_time').val());
+      $('#number_of_bags_id').val($('#number_of_bags').val());
+      $('#number_of_passengers_id').val($('#number_of_passengers').val());
+      $('#number_of_vehicle_id').val($('#number_of_vehicle').val());
     });
-           
-  </script>       
+  });
+</script>
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+    jQuery("#booking_dropoff_addresses_attributes_0_address").change(function(event){
+      var pick_up_addr = $('#booking_pickup_addresses_attributes_0_address').val();
+      var drop_off_addr = $('#booking_dropoff_addresses_attributes_0_address').val();
+      if (pick_up_addr != ""){
+        $.ajax({
+          url: "<%= show_new_booking_map_path %>",
+          type: "get",
+          data: {'pick_up_addr': pick_up_addr, 'drop_off_addr' :drop_off_addr},
+          success: function(data){
+          }
+        });
+      }
+    });
+  });
+</script>

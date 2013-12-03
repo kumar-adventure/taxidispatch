@@ -25,6 +25,7 @@ Taxidispatch::Application.routes.draw do
     end
   end
 
+  get "show_new_booking_map" => 'bookings#show_new_booking_map'
   get "booking_history" => 'bookings#booking_history'
   get "past_rides" => 'rides#past_rides'
   get "cancelled_rides" => 'rides#cancelled_rides'
