@@ -46,6 +46,7 @@
         <h1>All Current Rides</h1>
       </div>
       <hr>
+      <% i= 1 %>
       <% @all_current_rides.each do |all_rides|%>
         <div class="grid_item_content">
           <div class="all_current_rides_item">
@@ -53,7 +54,11 @@
               <strong><%= current_rides_pickup_date(all_rides.try(:pickup_datetime))%> at <%= current_rides_pickup_time(all_rides.try(:pickup_time))%></strong>
             </p>
             <p>
-              <%= @pickup_address.try(:address) %> <span class="current_rides_highlight">Current Rides</span>
+              <%= @pickup_address.try(:address) %> 
+              <% if (i!=2) %>
+              <% i=i+1 %>
+              <span class="current_rides_highlight">Current Rides</span>
+              <% end %>
             </p>
           </div>
           <div class="all_current_rides_item">

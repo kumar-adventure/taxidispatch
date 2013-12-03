@@ -207,10 +207,10 @@
             <span class="btn_round">?</span>
             <ul class="form_wrap clearfix">
               <li>
-                <input type="radio" id="single_taxi" name="recurrent" checked="checked" class="custom_radio"><label class="radiobutton" for="single_taxi">Single Taxi Service</label>
+                <input type="radio" id="single_taxi" name="recurrent" checked="checked" class=""><label class="radiobutton" for="single_taxi">Single Taxi Service</label>
               </li>
               <li>
-                <input type="radio" id="recurrent_taxi" name="recurrent" class="custom_radio"><label for="recurrent_taxi" class="radiobutton">Recurrent Taxi Service Needed</label>
+                <input type="radio" id="recurrent_taxi" name="recurrent" class=""><label for="recurrent_taxi" class="radiobutton">Recurrent Taxi Service Needed</label>
               </li>
             </ul>
           </div>
@@ -267,6 +267,22 @@
           }
         });
       }
+    });
+  });
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#recurrent_taxi").click(function() {
+      $.ajax({
+        url: "<%= get_address_path %>",
+        type: "get",
+        data: {},
+        dataType: 'JSON',
+        success: function(data){
+          $('#booking_pickup_addresses_attributes_0_address').val(data.pick_up_addr );
+          $('#booking_dropoff_addresses_attributes_0_address').val(data.drop_off_addr );
+        }
+      });
     });
   });
 </script>

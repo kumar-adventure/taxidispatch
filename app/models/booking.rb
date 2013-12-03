@@ -23,6 +23,6 @@ class Booking < ActiveRecord::Base
     pa = DropoffAddress.where(:booking_id => booking_id).last
     pa.address rescue ""
   end
-  
+
 end
 

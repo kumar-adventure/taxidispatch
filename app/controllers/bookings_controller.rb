@@ -78,6 +78,16 @@ class BookingsController < ApplicationController
     end
   end
 
+  def get_address
+    booking = Booking.where(user_id: current_user.id).last
+    pick_up_addr = PickupAddress.where(:booking_id => booking.id).last
+    drop_off_addr = DropoffAddress.where(:booking_id => booking.id).last
+    hash = {:pick_up_addr => pick_up_addr.address, :drop_off_addr => drop_off_addr.address}
+    respond_to do |format|
+      format.json { render :json => hash.to_json, :status => 200 }
+    end
+  end
+
   private
   def booking_params
     params[:booking][:user_id] = current_user.id
