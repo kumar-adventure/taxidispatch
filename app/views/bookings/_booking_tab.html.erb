@@ -281,6 +281,17 @@
         success: function(data){
           $('#booking_pickup_addresses_attributes_0_address').val(data.pick_up_addr );
           $('#booking_dropoff_addresses_attributes_0_address').val(data.drop_off_addr );
+          pick_up_addr = data.pick_up_addr
+          drop_off_addr = data.drop_off_addr
+          if (pick_up_addr != ""){
+            $.ajax({
+              url: "<%= show_new_booking_map_path %>",
+              type: "get",
+              data: {'pick_up_addr': pick_up_addr, 'drop_off_addr' :drop_off_addr},
+              success: function(data){
+              }
+            });
+          }
         }
       });
     });
