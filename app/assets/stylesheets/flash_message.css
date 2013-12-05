@@ -8,11 +8,11 @@
 }
 
 .flash.error {
-    border: thin solid #8b0000;
-    background: #ffc0cb;
+    border: thin solid #fcfcfc;
+    background: #fcfcfc;
 }
 
 .flash.notice, .flash.info {
-    border: thin solid #ff0;
-    background: #ffe;
+    border: thin solid #fcfcfc;
+    background: #fcfcfc;
 }

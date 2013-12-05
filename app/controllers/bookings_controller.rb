@@ -33,8 +33,11 @@ class BookingsController < ApplicationController
 
   def update
     @booking = Booking.find(params[:id])
-    @booking.update_attributes(params[:booking])
-    redirect_to rides_path
+    if @booking.update_attributes(params[:booking])
+      redirect_to rides_path, notice: "Your current ride info updated successfully."
+    else
+      redirect_to rides_path, error: "Oops, something went wrong. Please try again"
+    end
   end
   
   def booking_texi
