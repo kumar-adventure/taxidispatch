@@ -18,8 +18,11 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.create(booking_params)
-    @booking.save
-    redirect_to root_url
+    if @booking.save
+      redirect_to new_booking_path, notice: "Hurrey!Your Booking is done."
+    else
+      redirect_to new_booking_path, error: "Oops, something went wrong. Please try again"
+    end
   end
 
   def edit

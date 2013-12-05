@@ -1,3 +1,4 @@
+<%= render :partial => "layouts/masseges"%>
 <div class="content new_booking gray_box clearfix">
  	<table>
 		<tr>
@@ -129,9 +130,12 @@
               </ul>
               <ul id="another_vehicle" class="form_wrap clearfix disp-n">
                 <li class="fl-l">
-                  <%#= vp.select :vehicle_type_id, options_for_select(%w[1 2 3]), :class=>"type select_menu" %>
+                  <%= vp.select(:vehicle_type_id, VehiclePreference::VEHICLE_PREFERENCE_TYPE, {}, {:class => "type select_menu"}) %>
                 </li>
-                <li class="fl-l"><%#= vp.text_field :number_of_vehicle, :placeholder=>"Number", :class=>"number spinner"%></li>
+                <li class="fl-l">
+                  <%= text_field_tag 'number_of_vehicle1', nil , :placeholder=>"Number",:class=>"number spinner",:id => "number_of_vehicle"%>
+                  <%= vp.hidden_field :number_of_vehicle ,:id => "number_of_vehicle_id"%>
+                </li>
               </ul>
             </div>
           <% end %>
@@ -296,4 +300,11 @@
       });
     });
   });
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  setTimeout(function(){
+    $('#flash').remove();
+  }, 5000);
+ })
 </script>
