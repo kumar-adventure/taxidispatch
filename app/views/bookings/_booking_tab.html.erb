@@ -118,7 +118,7 @@
               <span class="btn_round">?</span>
               <ul class="form_wrap clearfix">
                 <li class="fl-l">
-                  <%= vp.select(:vehicle_type_id, VehiclePreference::VEHICLE_PREFERENCE_TYPE, {}, {:class => "type select_menu"}) %>
+                  <%= vp.select(:vehicle_type_id, VehicleType.all.collect {|p| [ p.vehicle_type, p.id ] }, {}, {:class => "type select_menu"}) %>
                 </li>
                 <li class="fl-l">
                 <%= text_field_tag 'number_of_vehicle1', nil , :placeholder=>"Number",:class=>"number spinner",:id => "number_of_vehicle"%>
@@ -130,11 +130,11 @@
               </ul>
               <ul id="another_vehicle" class="form_wrap clearfix disp-n">
                 <li class="fl-l">
-                  <%= vp.select(:vehicle_type_id, VehiclePreference::VEHICLE_PREFERENCE_TYPE, {}, {:class => "type select_menu"}) %>
+                  <%= vp.select(:vehicle_type_id, {}, {:class => "type select_menu"}) %>
                 </li>
                 <li class="fl-l">
-                  <%= text_field_tag 'number_of_vehicle1', nil , :placeholder=>"Number",:class=>"number spinner",:id => "number_of_vehicle"%>
-                  <%= vp.hidden_field :number_of_vehicle ,:id => "number_of_vehicle_id"%>
+                  <%= text_field_tag 'number_of_vehicle1', nil , :placeholder=>"Number",:class=>"number spinner",:id => "number_of_vehicle1"%>
+
                 </li>
               </ul>
             </div>
