@@ -17,14 +17,10 @@
         <% end %>
       </div>
       
-        
       <hr>
-      
       <div class="content_wrap clearfix", id = "past_rides">
         <%= render :partial => 'past_rides' %>
       </div>
-      
-      
     </div>
     <div class="pagination fl-r clearfix">
     <div class="fl-l">
@@ -46,7 +42,6 @@
       });
     </script>
 
-
   </div>
   <div class="col3 sidebar fl-r">
     <div class="grid_item gray_box">
@@ -54,9 +49,8 @@
         <h1>Schedule Rides</h1>
       </div>
       <hr>
-      <div class="grid_item_content">
-        <strong>You have no upcoming rides</strong>
-      </div>
+      <%= render :partial => 'schedule_rides' %>
+
     </div>
     <div class="grid_item  all_current_rides gray_box">
       <div class="grid_item_headings clearfix">
@@ -70,15 +64,8 @@
             <strong><%= current_rides_pickup_date(past_rides.try(:pickup_datetime))%> at <%= current_rides_pickup_time(past_rides.try(:pickup_time))%></strong>
           </p>
           <p>
-            <%= past_rides.showpickup_address(past_rides.id) %> <span class="current_rides_highlight">Current Rides</span>
-          </p>
-        </div>
-        <div class="all_current_rides_item">
-          <p>
-            <strong>Wednesday, 05/08 at 11:30PM</strong>
-          </p>
-          <p>
-            Alexandria, VA <a href="#">View Details</a>
+            <%= past_rides.showpickup_address(past_rides.id) %>
+              <a href="#">View Details</a>
           </p>
         </div>
       </div>

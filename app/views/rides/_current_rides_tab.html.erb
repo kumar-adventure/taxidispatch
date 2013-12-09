@@ -38,9 +38,7 @@
         <h1>Schedule Rides</h1>
       </div>
       <hr>
-      <div class="grid_item_content">
-        <strong>You have no upcoming rides</strong>
-      </div>
+        <%= render :partial => 'schedule_rides' %>
     </div>
     <div class="grid_item  all_current_rides gray_box">
       <div class="grid_item_headings clearfix">
@@ -55,23 +53,28 @@
               <strong><%= current_rides_pickup_date(all_rides.try(:pickup_datetime))%> at <%= current_rides_pickup_time(all_rides.try(:pickup_time))%></strong>
             </p>
             <p>
-              <%= @pickup_address.try(:address) %> 
+              <%= @pickup_address.try(:address) %>
               <% if (i!=2) %>
-              <% i=i+1 %>
-              <span class="current_rides_highlight">Current Rides</span>
+                <% i=i+1 %>
+                <span class="current_rides_highlight">Current Rides</span>
+              <% else %>
+                <a href="#" id ="view_current_ride">View Details</a>
               <% end %>
             </p>
           </div>
-          <div class="all_current_rides_item">
-            <p>
-              <strong>Wednesday, 05/08 at 11:30PM</strong>
-            </p>
-            <p>
-              Alexandria, VA <a href="#">View Details</a>
-            </p>
-          </div>          
         </div>
       <%end%>
     </div>
   </div>
 </div>
+<script>
+  $(document).ready(function(){
+    $("#view_current_ride").click(function(){
+    alert("murari");
+      
+      });
+    });
+  });
+</script>
+  
+

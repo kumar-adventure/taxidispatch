@@ -39,5 +39,15 @@ module BookingsHelper
   def booking_pickup_time(time)
     time.strftime("%H:%M") rescue 0
   end
-  
+
+  def show_status(pickup_date,pickup_time,dropoff_date,dropoff_time)
+    status = ""
+    if pickup_date == Time.now.to_date && pickup_time <= Time.now && dropoff_date >= pickup_date
+      status = "current"
+    elsif pickup_date > Time.now.to_date && dropoff_date >= pickup_date
+      status = "schedule"
+    else
+      status = "past"  
+    end
+  end
 end

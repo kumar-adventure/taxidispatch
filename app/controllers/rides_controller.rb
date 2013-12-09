@@ -1,5 +1,5 @@
 class RidesController < ApplicationController
-before_filter :authenticate_user!
+  before_filter :authenticate_user!
 	def index
     @rides = Booking.where(:user_id => current_user.id).where('pickup_time <= ? AND dropoff_time >= ?', Time.now,  Time.now).where(:pickup_datetime => Time.now.to_date).order('pickup_datetime ASC').first rescue 0
 
@@ -29,11 +29,15 @@ before_filter :authenticate_user!
         "height" => 36
 		  	})
 		end
+    
+    @scheduled_rides = Booking.where(:user_id => current_user.id).where(:pickup_datetime => Date.tomorrow..Date.today.next_month).order('pickup_datetime ASC') rescue 0
+    
 
-    @all_current_rides = Booking.where(:user_id => current_user.id).where(:pickup_datetime => Date.today..Date.today.next_month).order('pickup_datetime ASC') rescue 0
+    @all_current_rides = Booking.where(:user_id => current_user.id).where(:pickup_datetime => Date.today).order('pickup_datetime ASC') rescue 0
   end
 
 	def cancelled_rides
+    @scheduled_rides = Booking.where(:user_id => current_user.id).where(:pickup_datetime => Date.tomorrow..Date.today.next_month).order('pickup_datetime ASC') rescue 0
 	end
 
 	def past_rides
@@ -47,5 +51,6 @@ before_filter :authenticate_user!
     else
       @rides = Booking.where(:user_id => current_user.id).where('pickup_datetime < ?', Time.now.to_date).paginate(:page => params[:page], :per_page => 10).order('pickup_datetime ASC')
     end
+    @scheduled_rides = Booking.where(:user_id => current_user.id).where(:pickup_datetime => Date.tomorrow..Date.today.next_month).order('pickup_datetime ASC') rescue 0
   end
 end

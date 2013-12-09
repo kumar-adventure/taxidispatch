@@ -23,6 +23,11 @@ class Booking < ActiveRecord::Base
     pa = DropoffAddress.where(:booking_id => booking_id).last
     pa.address rescue ""
   end
-
+  
+  def calculate_distance(booking_id)
+    pa = PickupAddress.where(:booking_id => booking_id).last
+    da = DropoffAddress.where(:booking_id => booking_id).last
+    @loc_distance = Geocoder::Calculations.distance_between(pa.address, da.address, :units=> :km).round(1)
+  end
 end
 
