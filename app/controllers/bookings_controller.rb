@@ -40,18 +40,19 @@ class BookingsController < ApplicationController
     end
   end
   
-  def booking_texi
-    @bookings = Booking.where(:user_id => current_user.id).where('pickup_time <= ? AND dropoff_time >= ?', Time.now,  Time.now).where(:pickup_datetime => Time.now.to_date).where(:return_pickup_datetime => Time.now.to_date).order('pickup_datetime ASC').first rescue 0
+  def booking_texi(vehicle_type_id, pickup_date, pickup_time, dropoff_date, dropoff_time)
+    @bookings = Booking.where(:user_id => current_user.id).where('pickup_time <= ? AND dropoff_time >= ?', pickup_time,  dropoff_time).where(:pickup_datetime => pickup_date.to_date).where(:return_pickup_datetime => dropoff_date.to_date).order('pickup_datetime ASC') rescue 0
     @ids = []
-    unless @booking.blank?
+    unless @bookings.blank?
       @bookings.each do |booking|
         @ids << booking.taxi_info_id
       end
       @ids = @ids.uniq
-      @texi = TexiInfo.where.not(id: @ids).first
-      return @texi.id
+      @texi = TexiInfo.where.not(id: @ids).where(vehicle_type_id: vehicle_type_id).first
+      return @texi.id rescue 1
     end
-    return 1
+    @texi = TexiInfo.where(vehicle_type_id: vehicle_type_id).first
+    return @texi.id rescue 1
   end
 
   def show_new_booking_map
@@ -97,7 +98,12 @@ class BookingsController < ApplicationController
   private
   def booking_params
     params[:booking][:user_id] = current_user.id
-    params[:booking][:taxi_info_id] = booking_texi
+    vehicle_type_id = params[:booking][:vehicle_preferences_attributes].first[1][:vehicle_type_id]
+    pickup_date = params[:booking][:pickup_datetime]
+    pickup_time = params[:booking][:pickup_time]
+    dropoff_date = params[:booking][:return_pickup_datetime]
+    dropoff_time = params[:booking][:dropoff_time]
+    params[:booking][:taxi_info_id] = booking_texi(vehicle_type_id, pickup_date, pickup_time, dropoff_date, dropoff_time)
     params.require(:booking).permit(:dropoff_address, :via_address, :number_of_bags, :number_of_passengers, :booked_hours, :flight_info, :recurrent_type,:passenger_name, :passenger_phone_no, :passenger_email, :pickup_datetime, :return_pickup_datetime, :pickup_time, :dropoff_time, :user_id, :taxi_info_id, :vehicle_preferences_attributes => [:number_of_vehicle, :booking_id, :vehicle_type_id], :pickup_addresses_attributes => [:address, :booking_id], :dropoff_addresses_attributes => [:address, :booking_id])
   end
 end
