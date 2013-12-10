@@ -18,10 +18,12 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.create(booking_params)
-    if @booking.save
-      redirect_to new_booking_path, notice: "Hurrey!Your Booking is done."
+    if params[:booking][:taxi_info_id] != nil
+      @booking.save
+      redirect_to new_booking_path, notice: "Yap! Your Booking is done."
     else
-      redirect_to new_booking_path, error: "Oops, something went wrong. Please try again"
+      debugger
+      redirect_to new_booking_path, notice: "Oops!, currently taxi is not avalable."
     end
   end
 
@@ -40,19 +42,18 @@ class BookingsController < ApplicationController
     end
   end
   
-  def booking_texi(vehicle_type_id, pickup_date, pickup_time, dropoff_date, dropoff_time)
+  def booking_texi(vehicle_type_id, pickup_date, pickup_time, dropoff_date, dropoff_time, pickup_addr)
+    @texi_info = TexiInfo.near(pickup_addr,4).where(vehicle_type_id: vehicle_type_id).map(&:id).uniq rescue 0
     @bookings = Booking.where(:user_id => current_user.id).where('pickup_time <= ? AND dropoff_time >= ?', pickup_time,  dropoff_time).where(:pickup_datetime => pickup_date.to_date).where(:return_pickup_datetime => dropoff_date.to_date).order('pickup_datetime ASC') rescue 0
-    @ids = []
-    unless @bookings.blank?
-      @bookings.each do |booking|
-        @ids << booking.taxi_info_id
-      end
-      @ids = @ids.uniq
-      @texi = TexiInfo.where.not(id: @ids).where(vehicle_type_id: vehicle_type_id).first
-      return @texi.id rescue 1
+    @ids = @bookings.map(&:taxi_info_id).uniq unless @bookings.blank? rescue 0
+    if @ids != nil
+      @texi_info = @texi_info-@ids
     end
-    @texi = TexiInfo.where(vehicle_type_id: vehicle_type_id).first
-    return @texi.id rescue 1
+    if @texi_info.blank?
+      return []
+    else
+      return @texi_info.sample
+    end
   end
 
   def show_new_booking_map
@@ -103,7 +104,8 @@ class BookingsController < ApplicationController
     pickup_time = params[:booking][:pickup_time]
     dropoff_date = params[:booking][:return_pickup_datetime]
     dropoff_time = params[:booking][:dropoff_time]
-    params[:booking][:taxi_info_id] = booking_texi(vehicle_type_id, pickup_date, pickup_time, dropoff_date, dropoff_time)
+    pickup_addr = params[:booking][:pickup_addresses_attributes].first[1][:address]
+    params[:booking][:taxi_info_id] = booking_texi(vehicle_type_id, pickup_date, pickup_time, dropoff_date, dropoff_time, pickup_addr)
     params.require(:booking).permit(:dropoff_address, :via_address, :number_of_bags, :number_of_passengers, :booked_hours, :flight_info, :recurrent_type,:passenger_name, :passenger_phone_no, :passenger_email, :pickup_datetime, :return_pickup_datetime, :pickup_time, :dropoff_time, :user_id, :taxi_info_id, :vehicle_preferences_attributes => [:number_of_vehicle, :booking_id, :vehicle_type_id], :pickup_addresses_attributes => [:address, :booking_id], :dropoff_addresses_attributes => [:address, :booking_id])
   end
 end
