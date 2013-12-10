@@ -22,7 +22,6 @@ class BookingsController < ApplicationController
       @booking.save
       redirect_to new_booking_path, notice: "Yap! Your Booking is done."
     else
-      debugger
       redirect_to new_booking_path, notice: "Oops!, currently taxi is not avalable."
     end
   end
