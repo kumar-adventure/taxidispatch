@@ -61,7 +61,7 @@ class BookingsController < ApplicationController
   	@hash = Gmaps4rails.build_markers(@pickup_address) do |user, marker|
 		  marker.lat user.latitude
 		  marker.lng user.longitude
-		  marker.infowindow params[:pick_up_addr]
+		  marker.infowindow "PickUp Addr: "+params[:pick_up_addr]
 		  marker.picture({
 		  	"url" => "/assets/img/ico/map/ico_location_mark_a.png",
         "width" =>  36,
@@ -71,7 +71,7 @@ class BookingsController < ApplicationController
   	@hash1 = Gmaps4rails.build_markers(@dropoff_address) do |user, marker|
 		  marker.lat user.latitude
 		  marker.lng user.longitude
-		  marker.infowindow params[:drop_off_addr]
+		  marker.infowindow "DropOff Addr: "+params[:drop_off_addr]
 		  marker.picture({
 		  	"url" => "/assets/img/ico/map/ico_location_mark_b.png",
         "width" =>  36,

@@ -8,5 +8,6 @@ handler.buildMap({ mapTypeId: google.maps.MapTypeId.ROADMAP, internal: {id: 'map
   markers = handler.addMarkers(<%=raw @hash1.to_json %>);
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();
+  handler.getMap().setZoom(12);
 });
 </script>
