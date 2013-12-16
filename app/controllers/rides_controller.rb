@@ -39,6 +39,12 @@ class RidesController < ApplicationController
 	def cancelled_rides
     @scheduled_rides = Booking.where(:user_id => current_user.id).where(:pickup_datetime => Date.tomorrow..Date.today.next_month).order('pickup_datetime ASC') rescue 0
 	end
+  
+  def destroy
+    @rides = Booking.where(:user_id => current_user.id).where(:id => params[:id]).first rescue 0
+    @rides.destroy unless @rides.blank?
+    redirect_to rides_path, :notice => "Your booking has been deleted"
+  end
 
 	def past_rides
     if (params[:pickup_datetime].to_s!= "" && params[:return_pickup_datetime].to_s!= "")

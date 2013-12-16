@@ -50,6 +50,10 @@ module RidesHelper
     date.strftime("%A, %m/%d") rescue 0
   end
   
+  def edit_current_ride_pickup_date(date)
+    date.strftime('%d/%m/%Y') rescue 0
+  end
+  
   def current_rides_pickup_time(time)
     time.strftime("%H:%M%p") rescue 0
   end

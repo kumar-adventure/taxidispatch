@@ -15,11 +15,11 @@
       </li>
       <li>
           <span>Pickup_date:</span>
-          <%= f.text_field :pickup_datetime %>
+          <%= f.text_field :pickup_datetime, :class =>"input_ico input_ico_date datepicker", :value => "#{edit_current_ride_pickup_date(@booking.pickup_datetime)}" %>
       </li>
       <li>
           <span>Pickup_time:</span>
-          <%= f.text_field :pickup_time %>
+          <%= f.text_field :pickup_time, :class=>"input_ico input_ico_time timespinner",  :value => "#{current_rides_pickup_time(@booking.pickup_time)}" %>
       </li>
     </ul>
 

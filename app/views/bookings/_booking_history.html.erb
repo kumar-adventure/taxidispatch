@@ -29,7 +29,7 @@
           <td><%= booking.calculate_distance(booking.id) rescue ""%> km</td>
           <td>€ <%= booking.calculate_distance(booking.id)*2 rescue 0 %></td>
           <td><%= booking.passenger_name %></td>
-          <td>Christopher Walker</td>
+          <td><%= booking.taxi_driver(booking.taxi_info_id) %></td>
           <td><%= show_status(booking.try(:pickup_datetime), booking.try(:pickup_time), booking.try(:return_pickup_datetime), booking.try(:dropoff_time)) rescue 0 %></td>
         </tr>
         <% end %>

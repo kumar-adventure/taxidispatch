@@ -9,7 +9,12 @@
       <div class="grid_item_content">
         <div class="clearfix">
           <h2 class="fl-l"><%= current_rides_pickup_date(@rides.try(:pickup_datetime)) %> Taxi Ride:</h2>
+          <% unless (@rides.try(:id)).blank?%>
+          <%= link_to 'Cancle Ride',{:action => "destroy", :controller => "rides", :id => @rides.try(:id)},
+            :confirm => 'Are you sure?', :method => :delete , :class => "btn_orange fixed_width fl-r"%>
+          <% end %>
           <%= link_to "Edit Details", edit_booking_path(@rides.try(:id)), :class => "modal_ajax btn btn_orange fixed_width fl-r cboxElement", :title => "Edit Details" %>
+          
         </div>
         <div class="current_rides_item">
           <h3>Taxi Company:</h3>

@@ -29,5 +29,10 @@ class Booking < ActiveRecord::Base
     da = DropoffAddress.where(:booking_id => booking_id).last
     @loc_distance = Geocoder::Calculations.distance_between(pa.address, da.address, :units=> :km).round(1)
   end
+  
+  def taxi_driver(taxi_info_id)
+    @texi_info = TexiInfo.where(:id => taxi_info_id).first
+    @texi_info.driver_name rescue ""
+  end
 end
 

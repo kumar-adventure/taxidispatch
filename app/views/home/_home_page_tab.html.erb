@@ -1,6 +1,7 @@
 <div class="content_heading">
   Web Booking Taxi Service
 </div>
+
 <div class="content_nav dblshadow">
   <ul>
     <li class="first <%= get_home_tab_status(params[:action], 'index') %>">
@@ -15,4 +16,5 @@
     </li>
   </ul>
 </div>
+<%= render :partial => "layouts/masseges"%>
 <%= render :partial => get_home_tabs_partial(params[:action])%>
