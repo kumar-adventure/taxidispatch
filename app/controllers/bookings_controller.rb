@@ -44,7 +44,6 @@ class BookingsController < ApplicationController
   def booking_texi(vehicle_type_id, pickup_date, pickup_time, dropoff_date, dropoff_time, pickup_addr)
     @texi_info = TexiInfo.near(pickup_addr,4).where(vehicle_type_id: vehicle_type_id).map(&:id).uniq rescue 0
     @bookings = Booking.where(:user_id => current_user.id).where('pickup_time <= ? AND dropoff_time >= ?', pickup_time,  dropoff_time).where(:pickup_datetime => pickup_date.to_date).where(:return_pickup_datetime => dropoff_date.to_date).order('pickup_datetime ASC') rescue 0
-    debugger
     @ids = @bookings.map(&:taxi_info_id).uniq unless @bookings.blank? rescue 0
     if !@ids.blank?
       @texi_info = @texi_info-@ids
