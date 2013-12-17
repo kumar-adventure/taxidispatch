@@ -17,8 +17,9 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.create(booking_params)
+    params_book = booking_params
     if !params[:booking][:taxi_info_id].blank?
+      @booking = Booking.create(params_book)
       @booking.save
       redirect_to new_booking_path, notice: "Yap! Your Booking is done."
     else
