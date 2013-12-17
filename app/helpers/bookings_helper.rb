@@ -32,14 +32,17 @@ module BookingsHelper
     end
   end
   
+  # parse pickup_date
   def booking_pickup_date(date)
     date.strftime("%d %b %Y") rescue 0
   end
   
+  # parse pickup_time 
   def booking_pickup_time(time)
     time.strftime("%H:%M") rescue 0
   end
-
+  
+  # show rides status on booking_history
   def show_status(pickup_date,pickup_time,dropoff_date,dropoff_time)
     status = ""
     if pickup_date == Time.now.to_date && pickup_time <= Time.now && dropoff_date >= pickup_date

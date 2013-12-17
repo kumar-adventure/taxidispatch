@@ -9,27 +9,31 @@ class Booking < ActiveRecord::Base
 
   accepts_nested_attributes_for :vehicle_preferences, :pickup_addresses, :dropoff_addresses
   
-
+  
   def self.per_page
     10
   end
   
+  # accessing pickup_address on booking_history
   def showpickup_address(booking_id)
     pa = PickupAddress.where(:booking_id => booking_id).last
     pa.address rescue ""
   end 
   
+  # accessing dropoff_address on booking_history
   def showdropoff_address(booking_id)
     pa = DropoffAddress.where(:booking_id => booking_id).last
     pa.address rescue ""
   end
   
+  # calculate distance between pickup and dropoff address
   def calculate_distance(booking_id)
     pa = PickupAddress.where(:booking_id => booking_id).last
     da = DropoffAddress.where(:booking_id => booking_id).last
     @loc_distance = Geocoder::Calculations.distance_between(pa.address, da.address, :units=> :km).round(1)
   end
   
+  # accessing taxi_driver_name 
   def taxi_driver(taxi_info_id)
     @texi_info = TexiInfo.where(:id => taxi_info_id).first
     @texi_info.driver_name rescue ""

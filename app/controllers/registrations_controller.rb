@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
 	layout :false
-   
+  
+  # update current user information on my accounts 
   def update
     @user = User.find(current_user.id)
     #successfully_updated = if needs_password?(@user, params)

@@ -1,5 +1,7 @@
 class RidesController < ApplicationController
   before_filter :authenticate_user!
+  
+  # show current_ride 
 	def index
     @rides = Booking.where(:user_id => current_user.id).where('pickup_time <= ? AND dropoff_time >= ?', Time.now,  Time.now).where(:pickup_datetime => Time.now.to_date).order('pickup_datetime ASC').first rescue 0
 
@@ -35,17 +37,20 @@ class RidesController < ApplicationController
 
     @all_current_rides = Booking.where(:user_id => current_user.id).where(:pickup_datetime => Date.today).order('pickup_datetime ASC') rescue 0
   end
-
+  
+  # show cancel ride 
 	def cancelled_rides
     @scheduled_rides = Booking.where(:user_id => current_user.id).where(:pickup_datetime => Date.tomorrow..Date.today.next_month).order('pickup_datetime ASC') rescue 0
 	end
   
+  # delete current_ride on rides
   def destroy
     @rides = Booking.where(:user_id => current_user.id).where(:id => params[:id]).first rescue 0
     @rides.destroy unless @rides.blank?
     redirect_to rides_path, :notice => "Your booking has been deleted"
   end
-
+  
+  # show past_ride
 	def past_rides
     if (params[:pickup_datetime].to_s!= "" && params[:return_pickup_datetime].to_s!= "")
       from_date = DateTime.parse(params[:pickup_datetime]).strftime("%Y-%m-%d") 

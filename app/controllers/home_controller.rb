@@ -15,14 +15,16 @@ class HomeController < ApplicationController
       end
     end
   end
-
+  
   def help
   end
-
+  
+  # sending email
   def email_us
     render :layout => false
   end
-
+  
+  # show nearest texi for booking on home map within range
   def nearest_texi
     if params[:pick_up_id] != nil
       @texi_info = TexiInfo.near(params[:pick_up_id],4)

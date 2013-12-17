@@ -33,11 +33,13 @@ module RidesHelper
         "rides/cancelled_rides_tab"
     end
   end
-
+  
+  # parse current date
   def current_date
     Time.now.strftime("%b %d, %Y")
   end
 
+  # parse past date
   def past_date(date)
     date.strftime("%b %d, %Y") rescue 0
   end
@@ -46,14 +48,17 @@ module RidesHelper
     @texi = TexiInfo.where(:id => taxi_info_id).first
   end
   
+  # parse pickup date
   def current_rides_pickup_date(date)
     date.strftime("%A, %m/%d") rescue 0
   end
   
+  # parse pickup date for edit current ride
   def edit_current_ride_pickup_date(date)
     date.strftime('%d/%m/%Y') rescue 0
   end
   
+  # parse pickup_time
   def current_rides_pickup_time(time)
     time.strftime("%H:%M%p") rescue 0
   end

@@ -3,7 +3,8 @@ class UsersController < ApplicationController
     @user = current_user
     render :layout => false
   end
-
+  
+  # update password of current user
   def update_password
     @user = User.find(current_user.id)
     if @user.update_attributes(user_params)
@@ -16,7 +17,8 @@ class UsersController < ApplicationController
   end
 
   private
-
+  
+  # handling params for update password
   def user_params
     # NOTE: Using `strong_parameters` gem
     params.required(:user).permit(:password, :password_confirmation, :update_password_date)

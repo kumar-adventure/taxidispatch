@@ -4,7 +4,8 @@ class BookingsController < ApplicationController
 
 	def index
 	end
-
+  
+  # show all the bookings on booking_history
 	def booking_history
     @bookings = Booking.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 10)
 	end
@@ -42,6 +43,7 @@ class BookingsController < ApplicationController
     end
   end
   
+  # allocate taxi within range for booking
   def booking_texi(vehicle_type_id, pickup_date, pickup_time, dropoff_date, dropoff_time, pickup_addr)
     @texi_info = TexiInfo.near(pickup_addr,4).where(vehicle_type_id: vehicle_type_id).map(&:id).uniq rescue 0
     @bookings = Booking.where(:user_id => current_user.id).where('pickup_time <= ? AND dropoff_time >= ?', pickup_time,  dropoff_time).where(:pickup_datetime => pickup_date.to_date).where(:return_pickup_datetime => dropoff_date.to_date).order('pickup_datetime ASC') rescue 0
@@ -55,7 +57,8 @@ class BookingsController < ApplicationController
       return @texi_info.sample
     end
   end
-
+  
+  # show pick_up and drop_off address on new booking map
   def show_new_booking_map
     @pickup_address = Geocoder.search(params[:pick_up_addr]).first
     @dropoff_address = Geocoder.search(params[:drop_off_addr]).first
@@ -85,7 +88,8 @@ class BookingsController < ApplicationController
       format.js
     end
   end
-
+  
+  # recurrent pick_up and drop_off address 
   def get_address
     booking = Booking.where(user_id: current_user.id).last
     pick_up_addr = PickupAddress.where(:booking_id => booking.id).last
@@ -97,6 +101,7 @@ class BookingsController < ApplicationController
   end
 
   private
+  # handling booking parameters of booking tab
   def booking_params
     params[:booking][:user_id] = current_user.id
     vehicle_type_id = params[:booking][:vehicle_preferences_attributes].first[1][:vehicle_type_id]

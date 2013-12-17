@@ -1,4 +1,5 @@
 module MyAccountsHelper
+  # count no of day update password
   def count_password_day
     u = User.where(:id => current_user.id).first
     from_date = u.update_password_date.to_date
